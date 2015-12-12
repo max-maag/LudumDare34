@@ -10,11 +10,13 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float maxSpeed;
 	public float fallingThreshold;
 	private bool dead;
+	public static PlayerMovementScript instance;
 
 	private Rigidbody2D body;
 
 	void Start() {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
+		instance = this;
 	}	
 
 	void Update () {
@@ -43,7 +45,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	// respawns the player
-	void Respawn() {
+	public void Respawn() {
 		dead = false;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);

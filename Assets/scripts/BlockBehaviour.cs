@@ -13,6 +13,10 @@ public class BlockBehaviour : MonoBehaviour {
 	
 	}
 
+	void OnTriggerEnter2D() {
+		PlayerMovementScript.instance.Respawn();
+	}
+
 	void OnBecameInvisible() {
 		Destroy(this);
 	}
