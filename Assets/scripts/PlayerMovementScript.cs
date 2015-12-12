@@ -19,7 +19,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	void Start() {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
 
-		animationController = gameObject.GetComponent<PlayerAnimationController>();
+		// is on ground
+		// animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}
 
 	void Update () {
