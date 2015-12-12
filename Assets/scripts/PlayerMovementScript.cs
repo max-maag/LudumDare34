@@ -9,12 +9,24 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float movementSpeed;
 	public float maxSpeed;
 	public float fallingThreshold;
+	public float collisionNudgeThreshold;
+	public float epsilon;
 	private bool dead;
+	private bool isOnGround;
+	public static PlayerMovementScript instance;
+
+	private PlayerAnimationController animationController;
 
 	private Rigidbody2D body;
 
 	void Start() {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
+		instance = this;
+
+		isOnGround = true;
+
+		// is on ground
+		animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}	
 
 	void Update () {
@@ -28,11 +40,41 @@ public class PlayerMovementScript : MonoBehaviour {
 			Debug.Log("Player fall to much");
 			dead = true;
 		}
+
+
 	}
 
-	void OnCollisionEnter2D() {
+	void OnCollisionEnter2D(Collision2D c) {
 		if(dead) {
 			Respawn ();
+		}
+
+
+		if(c.gameObject.tag == Tags.BLOCK_TAG) {
+			Bounds boundBlock = c.collider.bounds;
+			Bounds boundPlayer = this.gameObject.GetComponent<Collider2D>().bounds;
+
+			// check if player is below the nudge threshold
+			if ((boundBlock.max.y - boundPlayer.min.y) > boundBlock.extents.y * collisionNudgeThreshold) {
+				Respawn();
+			}
+
+			// player is inside the nudge threshold -> move the player up
+			if((boundBlock.max.y - boundPlayer.min.y) > 0) {
+				this.transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundBlock.extents.y+epsilon, transform.position.z);
+			}
+		}
+		//touching ground after being in the air
+		if(!isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
+			isOnGround = true;
+			animationController.onIsOnGroundChanged (isOnGround);
+		}	}
+
+	void OnCollisionExit2D(Collision2D c) {
+		// in the air after touching the ground
+		if(isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
+			isOnGround = false;
+			animationController.onIsOnGroundChanged (isOnGround);
 		}
 	}
 
@@ -43,9 +85,11 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	// respawns the player
-	void Respawn() {
+	public void Respawn() {
 		dead = false;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+
+		animationController.onSpawn ();
 	}
 }
