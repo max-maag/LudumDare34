@@ -51,8 +51,13 @@ public class BlockControl : MonoBehaviour {
 			currentBlock.isKinematic = true;
 		}
 		
-		Debug.Log("Switching Blocks");
+		Debug.Log("===== Switching Blocks =====");
 		GameObject[] blocks = GameObject.FindGameObjectsWithTag(BLOCK_TAG);
+
+		Debug.Log("Found "+blocks.Length+" blocks.");
+
+		for(int i=0; i<blocks.Length; i++)
+			Debug.Log(blocks[i]);
 
 		if(blocks.Length == 0) {
 			Debug.Log("No next blog found.");
@@ -60,10 +65,15 @@ public class BlockControl : MonoBehaviour {
 			return;
 		}
 
-		Array.Sort(blocks, (a,b) => (int) Math.Sign(a.transform.position.y - b.transform.position.y));
+		Array.Sort(blocks, (a,b) => (int) Math.Sign(a.transform.position.x - b.transform.position.x));
 
+		Debug.Log("------------------------------");
+
+		for(int i=0; i<blocks.Length; i++)
+			Debug.Log(blocks[i]);
+		
 		for(int i=0; i<blocks.Length; i++) {
-			currentBlock = blocks[0].GetComponent<Rigidbody2D>();
+			currentBlock = blocks[i].GetComponent<Rigidbody2D>();
 			if(!currentBlock.isKinematic)
 				break;
 			else
