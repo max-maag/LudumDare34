@@ -12,13 +12,21 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float collisionNudgeThreshold;
 	public float epsilon;
 	private bool dead;
+	private bool isOnGround;
 	public static PlayerMovementScript instance;
+
+	private PlayerAnimationController animationController;
 
 	private Rigidbody2D body;
 
 	void Start() {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
 		instance = this;
+
+		isOnGround = true;
+
+		// is on ground
+		animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}	
 
 	void Update () {
@@ -33,7 +41,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			dead = true;
 		}
 
-		//Debug.Log(this.gameObject.GetComponent<Collider2D>().bounds.min.y);
+
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
@@ -56,6 +64,18 @@ public class PlayerMovementScript : MonoBehaviour {
 				this.transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundBlock.extents.y+epsilon, transform.position.z);
 			}
 		}
+		//touching ground after being in the air
+		if(!isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
+			isOnGround = true;
+			animationController.onIsOnGroundChanged (isOnGround);
+		}	}
+
+	void OnCollisionExit2D(Collision2D c) {
+		// in the air after touching the ground
+		if(isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
+			isOnGround = false;
+			animationController.onIsOnGroundChanged (isOnGround);
+		}
 	}
 
 	// check if player is outside the camera
@@ -69,5 +89,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		dead = false;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+
+		animationController.onSpawn ();
 	}
 }
