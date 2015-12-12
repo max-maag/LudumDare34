@@ -9,6 +9,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float movementSpeed;
 	public float maxSpeed;
 	public float fallingThreshold;
+	public float collisionNudgeThreshold;
+	public float epsilon;
 	private bool dead;
 	private bool isOnGround;
 	public static PlayerMovementScript instance;
@@ -47,12 +49,26 @@ public class PlayerMovementScript : MonoBehaviour {
 			Respawn ();
 		}
 
-		// touching ground after being in the air
+
+		if(c.gameObject.tag == Tags.BLOCK_TAG) {
+			Bounds boundBlock = c.collider.bounds;
+			Bounds boundPlayer = this.gameObject.GetComponent<Collider2D>().bounds;
+
+			// check if player is below the nudge threshold
+			if ((boundBlock.max.y - boundPlayer.min.y) > boundBlock.extents.y * collisionNudgeThreshold) {
+				Respawn();
+			}
+
+			// player is inside the nudge threshold -> move the player up
+			if((boundBlock.max.y - boundPlayer.min.y) > 0) {
+				this.transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundBlock.extents.y+epsilon, transform.position.z);
+			}
+		}
+		//touching ground after being in the air
 		if(!isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
 			isOnGround = true;
 			animationController.onIsOnGroundChanged (isOnGround);
-		}
-	}
+		}	}
 
 	void OnCollisionExit2D(Collision2D c) {
 		// in the air after touching the ground
