@@ -11,7 +11,6 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float collisionNudgeThreshold;
 	public float epsilon;
 	private bool isOnGround = true;
-	public static PlayerMovementScript instance;
 
 	private PlayerAnimationController animationController;
 
@@ -19,9 +18,9 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	void Start() {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
-		instance = this;
 
-		animationController = gameObject.GetComponent<PlayerAnimationController>();
+		// is on ground
+		// animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}
 
 	void Update () {
