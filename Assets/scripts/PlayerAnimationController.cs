@@ -18,11 +18,6 @@ public class PlayerAnimationController : MonoBehaviour {
 		animator = gameObject.GetComponent<Animator>();
 		changeState (STATE_RUN);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	private void changeState(int state){
 		if (state < STATE_IDLE || state > STATE_LAND) {
