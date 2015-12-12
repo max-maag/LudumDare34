@@ -8,6 +8,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	
 	public float movementSpeed;
 	public float maxSpeed;
+	public float fallingThreshold;
+	private bool dead;
 
 	private Rigidbody2D body;
 
@@ -20,6 +22,18 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(body.velocity.magnitude < maxSpeed) {
 			body.AddForce(new Vector2(movementSpeed, 0.0f));
 		}
+
+		// check the falling velocity
+		if(body.velocity.y < fallingThreshold) {
+			Debug.Log("Player fall to much");
+			dead = true;
+		}
+	}
+
+	void OnCollisionEnter2D() {
+		if(dead) {
+			Respawn ();
+		}
 	}
 
 	// check if player is outside the camera
@@ -30,6 +44,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	// respawns the player
 	void Respawn() {
+		dead = false;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
 	}
