@@ -367,6 +367,7 @@ MonoBehaviour:
   movementSpeed: 100
   maxSpeed: 2
   fallingThreshold: -6
+  collisionNudgeThreshold: .100000001
 --- !u!1 &1394830000
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +609,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 403698, guid: d1e57df64d5e7d049ac30e0249381cd3, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 101340, guid: d1e57df64d5e7d049ac30e0249381cd3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 185680, guid: d1e57df64d5e7d049ac30e0249381cd3, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
