@@ -9,7 +9,7 @@ public class RepeatingSprite : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-		spriteRenderer.sharedMaterial.mainTextureScale = new Vector2(transform.localScale.x, transform.localScale.y);
+		spriteRenderer.material.mainTextureScale = new Vector2(transform.localScale.x, transform.localScale.y);
 	}
 	
 	// Update is called once per frame
