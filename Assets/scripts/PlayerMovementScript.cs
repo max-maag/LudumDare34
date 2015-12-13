@@ -80,7 +80,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	// check if player is outside the camera
 	void OnBecameInvisible() {
 		Debug.Log("player died");
-		Die();
+		if(gameObject.transform.position.y < Camera.main.ViewportToWorldPoint (new Vector2(0.5f, 0.5f)).y)
+			Die();
 	}
 
 	// respawns the player
