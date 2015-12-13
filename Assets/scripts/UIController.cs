@@ -5,7 +5,8 @@ using System.Collections;
 
 public class UIController : MonoBehaviour {
 	public CanvasGroup gameOverScreen;
-	public CanvasGroup score;
+	public Text score;
+	public Text gameOverScore;
 
 	private ScoreKeeper playerScore;
 
@@ -24,8 +25,7 @@ public class UIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(!isPlayerDead) {
-			score.gameObject.GetComponentInChildren<Text>().text =
-				"Score: " + (long) Mathf.Round(playerScore.score);
+			score.text = "Score: " + (long) Mathf.Round(playerScore.score);
 		}
 	}
 
@@ -35,6 +35,8 @@ public class UIController : MonoBehaviour {
 
 		if(score != null)
 			score.gameObject.SetActive(false);
+
+		gameOverScore.text = "Score: " + (long) Mathf.Round(playerScore.score);
 
 		Time.timeScale = 0;
 

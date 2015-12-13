@@ -26,8 +26,7 @@ public class MapGenerator : MonoBehaviour {
 
 		// FIXME for some reason, xLeftOfScreen (and thereby xEndOfInitialGround) varies from time to time - this should not happen
 		// create the ground the player spawns on - hard code the first block
-		float xLeftOfScreen = Camera.main.ViewportToWorldPoint (Vector2.zero).x;
-		GameObject initialGround = groundFactory.getEarth (xLeftOfScreen, 0, 17);
+		GameObject initialGround = GameObject.FindWithTag(Tags.GROUND_TAG);
 		float xEndOfInitialGround = initialGround.GetComponent<Collider2D> ().bounds.max.x;
 
 		float widthOfInitialBlock = 5;
