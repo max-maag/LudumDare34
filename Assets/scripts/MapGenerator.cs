@@ -38,8 +38,8 @@ public class MapGenerator : MonoBehaviour {
 			float xRightOfScreen = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 
 			groundFactory.getEarth (xRightOfScreen, 0, halfOfScreenWidth / 2);
-			if(Random.Range (0, 1) % 2 == 0) {
-				blockFactory.getMultiBlockObstacle(xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, new float[] {1.0f, 2.0f, 3.0f}, new float[] {1.0f, 2.0f});
+			if(Random.Range (0, 2) % 2 == 0) {
+				blockFactory.getMultiBlockObstacle(xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, new float[] {2.0f, 1.5f, 3.0f}, new float[] {1.5f, 2.0f});
 			} else {
 				blockFactory.getSingleBlockObstacle (xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, 10);
 			}
