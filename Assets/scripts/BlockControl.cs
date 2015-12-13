@@ -56,24 +56,18 @@ public class BlockControl : MonoBehaviour {
 			currentBlock.isKinematic = true;
 			setBlockColor(currentBlock.gameObject, lockedInColor);
 		}
-		
-		Debug.Log("===== Switching Blocks =====");
-		GameObject[] blocks = GameObject.FindGameObjectsWithTag(BLOCK_TAG);
 
-		Debug.Log("Found "+blocks.Length+" blocks.");
+		GameObject[] blocks = GameObject.FindGameObjectsWithTag(BLOCK_TAG);
 
 		for(int i=0; i<blocks.Length; i++)
 			Debug.Log(blocks[i]);
 
 		if(blocks.Length == 0) {
-			Debug.Log("No next blog found.");
 			currentBlock = null;
 			return;
 		}
 
 		Array.Sort(blocks, (a,b) => (int) Math.Sign(a.transform.position.x - b.transform.position.x));
-
-		Debug.Log("------------------------------");
 
 		for(int i=0; i<blocks.Length; i++)
 			Debug.Log(blocks[i]);
@@ -88,9 +82,6 @@ public class BlockControl : MonoBehaviour {
 		}
 
 		lastSwitchTime = Time.time;
-
-		if(currentBlock == null)
-			Debug.Log("No next blog found.");
 	}
 
 	private void setBlockColor(GameObject block, Color color) {

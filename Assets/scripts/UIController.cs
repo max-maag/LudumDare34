@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 1;
 		startTime = Time.time;
 		playerScore = gameObject.GetComponent<ScoreKeeper>();
 		isPlayerDead = false;
@@ -29,8 +30,14 @@ public class UIController : MonoBehaviour {
 	}
 
 	void OnPlayerDeath() {
-		gameOverScreen.gameObject.SetActive(true);
-		score.gameObject.SetActive(false);
+		if(gameOverScreen != null)
+			gameOverScreen.gameObject.SetActive(true);
+
+		if(score != null)
+			score.gameObject.SetActive(false);
+
+		Time.timeScale = 0;
+
 		isPlayerDead = true;
 	}
 
