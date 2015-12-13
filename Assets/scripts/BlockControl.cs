@@ -97,4 +97,8 @@ public class BlockControl : MonoBehaviour {
 		for(int i=0; i<block.transform.childCount; i++)
 			block.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().color = color;
 	}
+
+	void OnPlayerDeath() {
+		enabled = false;
+	}
 }
