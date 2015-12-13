@@ -55,11 +55,6 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(c.gameObject.CompareTag(Tags.BLOCK_TAG) || c.gameObject.CompareTag(Tags.GROUND_TAG)) {
 			Bounds boundBlock = c.bounds;
 			Bounds boundPlayer = gameObject.GetComponent<Collider2D>().bounds;
-			
-			Debug.Log("trigger");
-			Debug.Log(boundPlayer.extents.y * collisionNudgeThreshold);
-			Debug.Log(boundBlock.max.y + ", "+  boundPlayer.min.y);
-			Debug.Log(Mathf.Abs(boundBlock.max.y - boundPlayer.min.y));
 
 			// player is inside the nudge threshold -> move the player up
 			if((boundBlock.max.y - boundPlayer.min.y) < boundPlayer.extents.y * collisionNudgeThreshold) {
@@ -85,7 +80,6 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	// respawns the player
 	public void Respawn() {
-		Debug.Log("player died");
 		isTouchingFloor = true;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		transform.position = new Vector3(0.0f, 0.5f, 0.0f);

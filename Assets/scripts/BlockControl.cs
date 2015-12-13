@@ -63,9 +63,6 @@ public class BlockControl : MonoBehaviour {
 
 		GameObject[] blocks = GameObject.FindGameObjectsWithTag(BLOCK_TAG);
 
-		for(int i=0; i<blocks.Length; i++)
-			Debug.Log(blocks[i]);
-
 		if(blocks.Length == 0) {
 			currentBlock = null;
 			return;

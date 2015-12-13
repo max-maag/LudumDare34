@@ -39,7 +39,6 @@ public class MapGenerator : MonoBehaviour {
 	void Update () {
 		float xRightOfCamera = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 		if(xRightOfCamera >= xNextGenerate) {
-			Debug.Log ("I'm at x = " + xNextGenerate + " and I'll generate some level now");
 
 			// there is still a lot TODO here
 			int numberOfBlocks = (int) numberOfBlocksDistribution.NextNormal ();
@@ -58,7 +57,6 @@ public class MapGenerator : MonoBehaviour {
 			}
 			widthOfAllBlocksAdded += xNextElement;
 			xNextGenerate += widthOfAllBlocksAdded;
-			Debug.Log ("next level generation at x = " + xNextGenerate);
 		}
 	}
 }
