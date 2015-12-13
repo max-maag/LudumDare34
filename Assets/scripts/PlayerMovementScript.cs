@@ -72,6 +72,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	// respawns the player
 	public void Respawn() {
+		Debug.Log("player died");
 		isTouchingFloor = true;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		transform.position = new Vector3(0.0f, 0.5f, 0.0f);

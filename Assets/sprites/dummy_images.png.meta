@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b7c8434c51f423b4185a31bd44fd7f15
-timeCreated: 1449933286
+timeCreated: 1450007102
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,7 +54,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -67,14 +67,14 @@ TextureImporter:
         y: 746
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_1
       rect:
         serializedVersion: 2
@@ -82,14 +82,14 @@ TextureImporter:
         y: 746
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_2
       rect:
         serializedVersion: 2
@@ -97,14 +97,14 @@ TextureImporter:
         y: 746
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_3
       rect:
         serializedVersion: 2
@@ -112,14 +112,14 @@ TextureImporter:
         y: 748
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_4
       rect:
         serializedVersion: 2
@@ -127,14 +127,14 @@ TextureImporter:
         y: 746
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_5
       rect:
         serializedVersion: 2
@@ -142,14 +142,14 @@ TextureImporter:
         y: 746
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_6
       rect:
         serializedVersion: 2
@@ -157,14 +157,14 @@ TextureImporter:
         y: 421
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_7
       rect:
         serializedVersion: 2
@@ -172,14 +172,14 @@ TextureImporter:
         y: 421
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_8
       rect:
         serializedVersion: 2
@@ -187,14 +187,14 @@ TextureImporter:
         y: 421
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     - name: dummy_images_9
       rect:
         serializedVersion: 2
@@ -202,14 +202,14 @@ TextureImporter:
         y: 421
         width: 256
         height: 256
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -128, y: 256}
-        - {x: -128, y: 0}
-        - {x: 128, y: 0}
-        - {x: 128, y: 256}
+      - - {x: -128, y: 128}
+        - {x: -128, y: -128}
+        - {x: 128, y: -128}
+        - {x: 128, y: 128}
     outline: []
   spritePackingTag: 
   userData: 

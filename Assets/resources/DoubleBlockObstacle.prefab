@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 477688}
   - 50: {fileID: 5023366}
   m_Layer: 0
-  m_Name: BlockObstacle
+  m_Name: DoubleBlockObstacle
   m_TagString: block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
