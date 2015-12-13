@@ -37,7 +37,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 			// check if player is below the nudge threshold
 			if ((boundBlock.max.y - boundPlayer.min.y) > transform.localScale.y * collisionNudgeThreshold) {
-				Respawn();
+				Die();
 				return;
 			}
 
@@ -67,7 +67,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	// check if player is outside the camera
 	void OnBecameInvisible() {
 		Debug.Log("player died");
-		Respawn();
+		Die();
 	}
 
 	// respawns the player
@@ -78,5 +78,9 @@ public class PlayerMovementScript : MonoBehaviour {
 		transform.position = new Vector3(0.0f, 0.5f, 0.0f);
 
 		animationController.onSpawn ();
+	}
+
+	void Die() {
+		Utils.SendGlobalMessage("OnPlayerDeath");
 	}
 }
