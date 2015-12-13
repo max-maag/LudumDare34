@@ -10,6 +10,9 @@ public class BlockControl : MonoBehaviour {
 	public float maxSpeed = 1f;
 	public float blockSwitchCooldown = 0.25f;
 
+	public Color lockedInColor;
+	public Color selectedColor;
+
 	private float lastSwitchTime;
 	private Rigidbody2D currentBlock;
 
@@ -49,6 +52,7 @@ public class BlockControl : MonoBehaviour {
 		if(currentBlock != null) {
 			currentBlock.velocity = Vector2.zero;
 			currentBlock.isKinematic = true;
+			setBlockColor(currentBlock.gameObject, lockedInColor);
 		}
 		
 		Debug.Log("===== Switching Blocks =====");
@@ -74,9 +78,10 @@ public class BlockControl : MonoBehaviour {
 		
 		for(int i=0; i<blocks.Length; i++) {
 			currentBlock = blocks[i].GetComponent<Rigidbody2D>();
-			if(!currentBlock.isKinematic)
+			if(!currentBlock.isKinematic) {
+				setBlockColor(currentBlock.gameObject, selectedColor);
 				break;
-			else
+			} else
 				currentBlock = null;
 		}
 
@@ -84,5 +89,9 @@ public class BlockControl : MonoBehaviour {
 
 		if(currentBlock == null)
 			Debug.Log("No next blog found.");
+	}
+
+	private void setBlockColor(GameObject block, Color color) {
+		block.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
 	}
 }
