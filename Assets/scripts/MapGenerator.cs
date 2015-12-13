@@ -5,7 +5,7 @@ public class MapGenerator : MonoBehaviour {
 	private const string PLAYER_TAG = "player";
 
 	public NormalDistribution numberOfBlocksDistribution;
-	//public NormalDistribution yOffsetOfBlockDistribution;
+	public NormalDistribution yOffsetOfBlockDistribution;
 	public NormalDistribution heightOfBlockDistribution;
 	public NormalDistribution widthOfBlockDistribution;
 	public NormalDistribution widthOfGroundDistribution;
@@ -31,8 +31,10 @@ public class MapGenerator : MonoBehaviour {
 		float xLeftOfScreen = Camera.main.ViewportToWorldPoint (Vector2.zero).x;
 		GameObject initialGround = groundFactory.getEarth (xLeftOfScreen, 0, 17);
 		float xEndOfInitialGround = initialGround.GetComponent<Collider2D> ().bounds.max.x;
-		blockFactory.getSingleBlockObstacle (xEndOfInitialGround, 1, 5, 4);
-		xNextElement = xEndOfInitialGround + 5;
+
+		float widthOfInitialBlock = 5;
+		blockFactory.getSingleBlockObstacle (xEndOfInitialGround, 1, widthOfInitialBlock, 4);
+		xNextElement = xEndOfInitialGround + widthOfInitialBlock;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +49,7 @@ public class MapGenerator : MonoBehaviour {
 			for(int i = 0; i < numberOfBlocks; i++) {
 				float heightOfBlock = (float) heightOfBlockDistribution.NextNormal ();
 				float widthOfBlock = (float) widthOfBlockDistribution.NextNormal ();
-				float yOffsetOfBlock = (float)3;
+				float yOffsetOfBlock = (float)yOffsetOfBlockDistribution.NextNormal ();
 
 				if(Random.Range (0, 2) % 2 == 0) {
 					blockFactory.getMultiBlockObstacle (xNextElement, yOffsetOfBlock, widthOfBlock, new float[] { 2.0f, 3.0f }, new float[] { 3 });
