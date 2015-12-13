@@ -8,7 +8,7 @@ public class BlockFactory : MonoBehaviour {
 
 	private BlockFactory() {}
 
-	void Start() {
+	void Awake() {
 		instance = this;
 	}
 
