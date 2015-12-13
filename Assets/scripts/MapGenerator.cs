@@ -24,7 +24,7 @@ public class MapGenerator : MonoBehaviour {
 		blockFactory = BlockFactory.instance;
 
 		float xLeftOfScreen = Camera.main.ViewportToWorldPoint (Vector2.zero).x;
-		Debug.Log ("xLeftOfScreen " + xLeftOfScreen);	// FIXME why is this -11 in Start() when it should be -13!?
+
 		float screenWidth = Camera.main.ViewportToWorldPoint (Vector2.right).x - xLeftOfScreen;
 
 		groundFactory.getEarth (xLeftOfScreen, 0, screenWidth);
@@ -34,7 +34,7 @@ public class MapGenerator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(player.transform.position.x >= xNextGenerate) {
-			Debug.Log ("I'm at x = " + xNextGenerate + " and I'll generate some level now");
+			
 			float xRightOfScreen = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 
 			groundFactory.getEarth (xRightOfScreen, 0, halfOfScreenWidth / 2);
@@ -58,7 +58,6 @@ public class MapGenerator : MonoBehaviour {
 //					0);
 			
 			xNextGenerate += halfOfScreenWidth;
-			Debug.Log ("next level generation at x = " + xNextGenerate);
 		}
 	}
 }

@@ -94,6 +94,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	void Die() {
+		Debug.Log("player died");
 		Utils.SendGlobalMessage("OnPlayerDeath");
 	}
 }
