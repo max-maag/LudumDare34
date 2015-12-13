@@ -5,6 +5,8 @@ public class BlockFactory : MonoBehaviour {
 
 	public static BlockFactory instance;
 	private const string SINGLE_BLOCK_OBST = "SingleBlockObstacle";
+	private const string MULTI_BLOCK_OBST = "MultiBlockObstacle";
+	private const string SINGLE_BLOCK = "SingleBlock";
 
 	private BlockFactory() {}
 
@@ -12,12 +14,41 @@ public class BlockFactory : MonoBehaviour {
 		instance = this;
 	}
 
-	public GameObject getSingleBlock(float xLeft, float yTop, float width, float height) {
+	/// <summary>
+	/// Gets a single block obstacle with the given properties at the given position.
+	/// </summary>
+	/// <returns>a single block obstacle</returns>
+	/// <param name="xLeft">X part of the top left anchor of the obstacle</param>
+	/// <param name="yTop">Y part of the top left anchor of the obstacle</param>
+	/// <param name="width">the width of the obstacle</param>
+	/// <param name="height">the height of the obstacle</param>
+	public GameObject getSingleBlockObstacle(float xLeft, float yTop, float width, float height) {
 		GameObject block = (GameObject) Instantiate(Resources.Load (SINGLE_BLOCK_OBST), Vector3.zero, Quaternion.identity);
 		for(int i=0; i < block.transform.childCount; i++)
 			block.transform.GetChild(i).localScale = new Vector3 (width, height);
 		block.transform.position = new Vector3 (width / 2 + xLeft, -height / 2 + yTop);
 		return block;
+	}
+
+	public GameObject getMultiBlockObstacle(float xLeft, float yTop, float width, float[] heights, float[] sepHeights) {
+		if (heights.Length -1 != sepHeights.Length) {
+			Debug.LogError ("The number of separator heights must be the number of heights minus one (was: " + sepHeights.Length + " and " + heights.Length + ")");
+		}
+
+		int numberOfBlocks = heights.Length;
+		GameObject obstacle = (GameObject)Instantiate (Resources.Load (MULTI_BLOCK_OBST), Vector3.zero, Quaternion.identity);
+
+		float heightAccu = 0.0f;
+		for(int i=0; i < 1; i++) {
+			GameObject singleBlock = (GameObject)Instantiate (Resources.Load (SINGLE_BLOCK), Vector3.zero, Quaternion.identity);
+			singleBlock.transform.localScale = new Vector3 (width, heights [i]);
+			singleBlock.transform.position += new Vector3 (0, heightAccu - heights [i] / 2);
+			singleBlock.transform.parent = obstacle.transform;
+
+			heightAccu += -heights [i] - sepHeights [i];
+		}
+		obstacle.transform.position = new Vector3 (xLeft, yTop);
+		return obstacle;
 	}
 
 	// TODO add GroundTunnel
