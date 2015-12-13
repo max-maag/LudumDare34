@@ -16,6 +16,10 @@ public class BlockControl : MonoBehaviour {
 	private float lastSwitchTime;
 	private Rigidbody2D currentBlock;
 
+	const string ANIMATOR_STATE_PARAMETER = "animState";
+	const int STATE_SELECTED = 1;
+	const int STATE_LOCKED = 2;
+
 	// Use this for initialization
 	void Start () {
 		switchBlock();
@@ -58,7 +62,7 @@ public class BlockControl : MonoBehaviour {
 		if(currentBlock != null) {
 			currentBlock.velocity = Vector2.zero;
 			currentBlock.isKinematic = true;
-			setBlockColor(currentBlock.gameObject, lockedInColor);
+			setBlockState(currentBlock.gameObject, STATE_LOCKED);
 		}
 
 		GameObject[] blocks = GameObject.FindGameObjectsWithTag(BLOCK_TAG);
@@ -76,7 +80,8 @@ public class BlockControl : MonoBehaviour {
 		for(int i=0; i<blocks.Length; i++) {
 			currentBlock = blocks[i].GetComponent<Rigidbody2D>();
 			if(!currentBlock.isKinematic) {
-				setBlockColor(currentBlock.gameObject, selectedColor);
+				// set selection animation
+				setBlockState(currentBlock.gameObject, STATE_SELECTED);
 				break;
 			} else
 				currentBlock = null;
@@ -85,9 +90,10 @@ public class BlockControl : MonoBehaviour {
 		lastSwitchTime = Time.time;
 	}
 
-	private void setBlockColor(GameObject block, Color color) {
+	private void setBlockState(GameObject block, int state) {
 		for(int i=0; i<block.transform.childCount; i++)
-			block.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().color = color;
+			//block.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().color = color;
+			block.transform.GetChild(i).GetChild(0).GetComponent<Animator>().SetInteger(ANIMATOR_STATE_PARAMETER, state);
 	}
 
 	void OnPlayerDeath() {

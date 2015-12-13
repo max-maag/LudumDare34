@@ -27,6 +27,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 479754}
   - 212: {fileID: 21260316}
+  - 95: {fileID: 9597934}
   m_Layer: 0
   m_Name: Overlay
   m_TagString: Untagged
@@ -73,6 +74,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!95 &9597934
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a139e52b07020f4db9675ecc427033b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11472546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +205,10 @@ Prefab:
       propertyPath: m_Color.a
       value: 0.59607846
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0a139e52b07020f4db9675ecc427033b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126196}
