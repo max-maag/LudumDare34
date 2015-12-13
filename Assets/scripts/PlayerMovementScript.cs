@@ -43,7 +43,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 			// player is inside the nudge threshold -> move the player up
 			if((boundBlock.max.y - boundPlayer.min.y) > 0) {
-				transform.position = new Vector3(transform.position.x, boundBlock.max.y+epsilon, transform.position.z);
+				transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundPlayer.extents.y+epsilon, transform.position.z);
 			}
 		}
 
