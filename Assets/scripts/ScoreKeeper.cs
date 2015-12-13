@@ -11,6 +11,6 @@ public class ScoreKeeper : MonoBehaviour {
 	}
 
 	void Update () {
-		score += 100 * Time.deltaTime;
+		score += 50 * Time.deltaTime;
 	}
 }
