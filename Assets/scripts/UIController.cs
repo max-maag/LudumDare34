@@ -11,21 +11,27 @@ public class UIController : MonoBehaviour {
 
 	private float startTime;
 
+	private bool isPlayerDead;
+
 	// Use this for initialization
 	void Start () {
 		startTime = Time.time;
 		playerScore = gameObject.GetComponent<ScoreKeeper>();
+		isPlayerDead = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		score.gameObject.GetComponentInChildren<Text>().text =
-			"Score: " + (long) Mathf.Round(playerScore.score);
+		if(!isPlayerDead) {
+			score.gameObject.GetComponentInChildren<Text>().text =
+				"Score: " + (long) Mathf.Round(playerScore.score);
+		}
 	}
 
 	void OnPlayerDeath() {
 		gameOverScreen.gameObject.SetActive(true);
 		score.gameObject.SetActive(false);
+		isPlayerDead = true;
 	}
 
 	public void OnRestartButtonClick() {

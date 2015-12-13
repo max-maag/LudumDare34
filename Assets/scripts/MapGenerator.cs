@@ -4,18 +4,21 @@ using System.Collections;
 public class MapGenerator : MonoBehaviour {
 	private const string PLAYER_TAG = "player";
 
-	public NormalDistribution positionDistribution;
-	public NormalDistribution heightDistribution;
-	public NormalDistribution gapSizeDistribution;
+	public NormalDistribution numberOfBlocksDistribution;
+	//public NormalDistribution yOffsetOfBlockDistribution;
+	public NormalDistribution heightOfBlockDistribution;
+	public NormalDistribution widthOfBlockDistribution;
+	public NormalDistribution widthOfGroundDistribution;
 
 	private GameObject player;
 	private GroundFactory groundFactory;
 	private BlockFactory blockFactory;
 
-	private float halfOfScreenWidth;
-
-	/// new map elements are generated when the player reaches this x coordinate
+	/// new elements are generated when the camera's right edge crosses this threshold
 	private float xNextGenerate;
+
+	/// x coordinate at which the next element should be placed at (or: x coordinate up to which the level is defined)
+	private float xNextElement;
 
 	// Use this for initialization
 	void Start () {
@@ -23,41 +26,39 @@ public class MapGenerator : MonoBehaviour {
 		groundFactory = GroundFactory.instance;
 		blockFactory = BlockFactory.instance;
 
+		// FIXME for some reason, xLeftOfScreen (and thereby xEndOfInitialGround) varies from time to time - this should not happen
+		// create the ground the player spawns on - hard code the first block
 		float xLeftOfScreen = Camera.main.ViewportToWorldPoint (Vector2.zero).x;
-
-		float screenWidth = Camera.main.ViewportToWorldPoint (Vector2.right).x - xLeftOfScreen;
-
-		groundFactory.getEarth (xLeftOfScreen, 0, screenWidth);
-		halfOfScreenWidth = screenWidth / 2;
+		GameObject initialGround = groundFactory.getEarth (xLeftOfScreen, 0, 17);
+		float xEndOfInitialGround = initialGround.GetComponent<Collider2D> ().bounds.max.x;
+		blockFactory.getSingleBlockObstacle (xEndOfInitialGround, 1, 5, 4);
+		xNextElement = xEndOfInitialGround + 5;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(player.transform.position.x >= xNextGenerate) {
-			
-			float xRightOfScreen = Camera.main.ViewportToWorldPoint(Vector3.right).x;
+		float xRightOfCamera = Camera.main.ViewportToWorldPoint(Vector3.right).x;
+		if(xRightOfCamera >= xNextGenerate) {
+			Debug.Log ("I'm at x = " + xNextGenerate + " and I'll generate some level now");
 
-			groundFactory.getEarth (xRightOfScreen, 0, halfOfScreenWidth / 2);
-			if(Random.Range (0, 2) % 2 == 0) {
-				blockFactory.getMultiBlockObstacle(xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, new float[] {2.0f, 1.5f, 3.0f}, new float[] {1.5f, 2.0f});
-			} else {
-				blockFactory.getSingleBlockObstacle (xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, 10);
+			// there is still a lot TODO here
+			int numberOfBlocks = (int) numberOfBlocksDistribution.NextNormal ();
+			float widthOfAllBlocksAdded = -xNextElement;
+			for(int i = 0; i < numberOfBlocks; i++) {
+				float heightOfBlock = (float) heightOfBlockDistribution.NextNormal ();
+				float widthOfBlock = (float) widthOfBlockDistribution.NextNormal ();
+				float yOffsetOfBlock = (float)3;
+
+				if(Random.Range (0, 2) % 2 == 0) {
+					blockFactory.getMultiBlockObstacle (xNextElement, yOffsetOfBlock, widthOfBlock, new float[] { 2.0f, 3.0f }, new float[] { 3 });
+				} else {
+					blockFactory.getSingleBlockObstacle (xNextElement, yOffsetOfBlock, widthOfBlock, heightOfBlock);
+				}
+				xNextElement += widthOfBlock;
 			}
-
-
-//			Vector3 pos = new Vector3(
-//					rightEdge + 1,
-//					player.transform.position.y +
-//					,
-//					1f);
-//			
-//			GameObject newBlock = (GameObject) Instantiate(block, pos, Quaternion.identity);
-//			newBlock.transform.GetChild(0).localPosition +=
-//				new Vector3(0,
-//					(float) (3*gapSizeDistribution.dev + gapSizeDistribution.NextNormal()),
-//					0);
-			
-			xNextGenerate += halfOfScreenWidth;
+			widthOfAllBlocksAdded += xNextElement;
+			xNextGenerate += widthOfAllBlocksAdded;
+			Debug.Log ("next level generation at x = " + xNextGenerate);
 		}
 	}
 }
