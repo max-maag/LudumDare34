@@ -10,7 +10,6 @@ public class MapGenerator : MonoBehaviour {
 	public NormalDistribution widthOfBlockDistribution;
 	public NormalDistribution widthOfGroundDistribution;
 
-	private GameObject player;
 	private GroundFactory groundFactory;
 	private BlockFactory blockFactory;
 
@@ -22,7 +21,6 @@ public class MapGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindWithTag(PLAYER_TAG);
 		groundFactory = GroundFactory.instance;
 		blockFactory = BlockFactory.instance;
 
