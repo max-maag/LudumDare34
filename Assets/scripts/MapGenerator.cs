@@ -38,7 +38,12 @@ public class MapGenerator : MonoBehaviour {
 			float xRightOfScreen = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 
 			groundFactory.getEarth (xRightOfScreen, 0, halfOfScreenWidth / 2);
-			blockFactory.getSingleBlock (xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, 10);
+			if(Random.Range (0, 1) % 2 == 0) {
+				blockFactory.getMultiBlockObstacle(xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, new float[] {1.0f, 2.0f, 3.0f}, new float[] {1.0f, 2.0f});
+			} else {
+				blockFactory.getSingleBlockObstacle (xRightOfScreen + halfOfScreenWidth / 2, (float) heightDistribution.NextNormal(), halfOfScreenWidth / 2, 10);
+			}
+
 
 //			Vector3 pos = new Vector3(
 //					rightEdge + 1,
