@@ -31,7 +31,11 @@ public class BlockControl : MonoBehaviour {
 		if(Time.time - lastSwitchTime < blockSwitchCooldown)
 			return;
 
+		Collider2D c = currentBlock.gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>();
+
 		bool shouldSwitchBlocks =
+			currentBlock.gameObject.transform.position.x + c.bounds.extents.x <=
+				GameObject.FindWithTag(Tags.PLAYER_TAG).transform.position.x ||
 			Input.GetButton(UP_BUTTON_NAME) &&
 			Input.GetButton(DOWN_BUTTON_NAME);
 
