@@ -346,6 +346,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1402115006}
   - {fileID: 1757121771}
   - {fileID: 1157168346}
   - {fileID: 717856615}
@@ -362,9 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946d77d4b04792347a44a39b065aa1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionDistribution: {fileID: 1757121770}
-  heightDistribution: {fileID: 1157168347}
-  gapSizeDistribution: {fileID: 717856616}
+  numberOfBlocksDistribution: {fileID: 1402115007}
+  heightOfBlockDistribution: {fileID: 1757121770}
+  widthOfBlockDistribution: {fileID: 1157168347}
+  widthOfGroundDistribution: {fileID: 717856616}
 --- !u!114 &542274510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +412,7 @@ GameObject:
   - 4: {fileID: 717856615}
   - 114: {fileID: 717856616}
   m_Layer: 0
-  m_Name: gapSizeDistribution
+  m_Name: WidthOfGroundDistribution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +429,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 542274508}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &717856616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,8 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ee797a651bc5b45b884e604983d361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mean: 0
-  dev: 0.01
+  mean: 10
+  dev: 2
 --- !u!1 &859784072
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +670,7 @@ GameObject:
   - 4: {fileID: 1157168346}
   - 114: {fileID: 1157168347}
   m_Layer: 0
-  m_Name: heightDistribution
+  m_Name: WidthOfBlockDistribution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,7 +687,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 542274508}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1157168347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,8 +699,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ee797a651bc5b45b884e604983d361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mean: 0
+  mean: 10
   dev: 2
+--- !u!1 &1402115005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1402115006}
+  - 114: {fileID: 1402115007}
+  m_Layer: 0
+  m_Name: NumberOfBlocksDistribution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1402115006
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402115005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.763174, y: -0.6550582, z: 9.258107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 542274508}
+  m_RootOrder: 0
+--- !u!114 &1402115007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402115005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ee797a651bc5b45b884e604983d361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mean: 1
+  dev: 0.5
 --- !u!1 &1415164054
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +898,7 @@ GameObject:
   - 4: {fileID: 1757121771}
   - 114: {fileID: 1757121770}
   m_Layer: 0
-  m_Name: PositionDistribution
+  m_Name: HeightOfBlockDistribution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,7 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ee797a651bc5b45b884e604983d361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mean: 5
+  mean: 8
   dev: 3
 --- !u!4 &1757121771
 Transform:
@@ -885,7 +928,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 542274508}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1782712500
 GameObject:
   m_ObjectHideFlags: 0
