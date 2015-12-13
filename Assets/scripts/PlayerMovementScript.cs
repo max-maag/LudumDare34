@@ -31,19 +31,14 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		if(c.gameObject.CompareTag(Tags.BLOCK_TAG)) {
+		if(c.gameObject.CompareTag(Tags.BLOCK_TAG) || c.gameObject.CompareTag(Tags.GROUND_TAG)) {
 			Bounds boundBlock = c.collider.bounds;
 			Bounds boundPlayer = gameObject.GetComponent<Collider2D>().bounds;
 
 			// check if player is below the nudge threshold
-			if ((boundBlock.max.y - boundPlayer.min.y) > transform.localScale.y * collisionNudgeThreshold) {
+			if ((boundBlock.max.y - boundPlayer.min.y) > boundPlayer.extents.y * collisionNudgeThreshold) {
 				Respawn();
 				return;
-			}
-
-			// player is inside the nudge threshold -> move the player up
-			if((boundBlock.max.y - boundPlayer.min.y) > 0) {
-				transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundPlayer.extents.y+epsilon, transform.position.z);
 			}
 		}
 
@@ -52,6 +47,24 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(!isTouchingFloor && collisionWithGroundOrBlock) {
 			isTouchingFloor = true;
 			animationController.onTouchingFloorChanged (isTouchingFloor);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D c) {
+		
+		if(c.gameObject.CompareTag(Tags.BLOCK_TAG) || c.gameObject.CompareTag(Tags.GROUND_TAG)) {
+			Bounds boundBlock = c.bounds;
+			Bounds boundPlayer = gameObject.GetComponent<Collider2D>().bounds;
+			
+			Debug.Log("trigger");
+			Debug.Log(boundPlayer.extents.y * collisionNudgeThreshold);
+			Debug.Log(boundBlock.max.y + ", "+  boundPlayer.min.y);
+			Debug.Log(Mathf.Abs(boundBlock.max.y - boundPlayer.min.y));
+
+			// player is inside the nudge threshold -> move the player up
+			if((boundBlock.max.y - boundPlayer.min.y) < boundPlayer.extents.y * collisionNudgeThreshold) {
+				transform.position = new Vector3(transform.position.x+epsilon, boundBlock.max.y+boundPlayer.extents.y+epsilon, transform.position.z);
+			}
 		}
 	}
 
