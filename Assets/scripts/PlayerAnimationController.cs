@@ -26,8 +26,8 @@ public class PlayerAnimationController : MonoBehaviour {
 		animator.SetInteger (ANIMATOR_STATE_PARAMETER, state);
 	}
 
-	public void onIsOnGroundChanged(bool isOnGroundNow) {
-		changeState (isOnGroundNow ? STATE_LAND : STATE_FALL);
+	public void onTouchingFloorChanged(bool isTouchingFloorNow) {
+		changeState (isTouchingFloorNow ? STATE_LAND : STATE_FALL);
 	}
 
 	public void onSpawn() {

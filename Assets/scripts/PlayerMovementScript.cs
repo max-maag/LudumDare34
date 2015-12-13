@@ -10,7 +10,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float maxSpeed;
 	public float collisionNudgeThreshold;
 	public float epsilon;
-	private bool isOnGround = true;
+	private bool isTouchingFloor = true;
 
 	private PlayerAnimationController animationController;
 
@@ -20,7 +20,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
 
 		// is on ground
-		// animationController = gameObject.GetComponent<PlayerAnimationController>();
+		animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}
 
 	void Update () {
@@ -48,17 +48,19 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 
 		// touching ground after being in the air
-		if(!isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
-			isOnGround = true;
-			animationController.onIsOnGroundChanged (isOnGround);
+		bool collisionWithGroundOrBlock = c.gameObject.CompareTag(Tags.GROUND_TAG) || c.gameObject.CompareTag(Tags.BLOCK_TAG);
+		if(!isTouchingFloor && collisionWithGroundOrBlock) {
+			isTouchingFloor = true;
+			animationController.onTouchingFloorChanged (isTouchingFloor);
 		}
 	}
 
 	void OnCollisionExit2D(Collision2D c) {
 		// in the air after touching the ground
-		if(isOnGround && c.gameObject.CompareTag(Tags.GROUND_TAG)) {
-			isOnGround = false;
-			animationController.onIsOnGroundChanged (isOnGround);
+		bool collisionWithGroundOrBlock = c.gameObject.CompareTag(Tags.GROUND_TAG) || c.gameObject.CompareTag(Tags.BLOCK_TAG);
+		if(isTouchingFloor && collisionWithGroundOrBlock) {
+			isTouchingFloor = false;
+			animationController.onTouchingFloorChanged (isTouchingFloor);
 		}
 	}
 
@@ -70,7 +72,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	// respawns the player
 	public void Respawn() {
-		isOnGround = true;
+		isTouchingFloor = true;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
 

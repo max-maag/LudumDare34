@@ -23,9 +23,11 @@ public class BlockControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(currentBlock == null)
+		if(currentBlock == null) {
+			switchBlock ();
 			return;
-		
+		}
+
 		if(Time.time - lastSwitchTime < blockSwitchCooldown)
 			return;
 
