@@ -10,10 +10,9 @@ public class BlockBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
-
-	void OnBecameInvisible() {
-		Destroy(this);
+		if(gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>().bounds.max.x <
+			Camera.main.ViewportToWorldPoint(Vector3.zero).x) {
+			Destroy(gameObject);
+		}
 	}
 }
