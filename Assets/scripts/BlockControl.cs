@@ -92,6 +92,7 @@ public class BlockControl : MonoBehaviour {
 	}
 
 	private void setBlockColor(GameObject block, Color color) {
-		block.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
+		for(int i=0; i<block.transform.childCount; i++)
+			block.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().color = color;
 	}
 }
