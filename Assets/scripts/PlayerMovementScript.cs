@@ -10,7 +10,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	public float maxSpeed;
 	public float collisionNudgeThreshold;
 	public float epsilon;
-	private bool isTouchingFloor = true;
+	private bool isTouchingFloor;
 
 	private PlayerAnimationController animationController;
 
@@ -80,7 +80,6 @@ public class PlayerMovementScript : MonoBehaviour {
 
 	// respawns the player
 	public void Respawn() {
-		isTouchingFloor = true;
 		body.velocity = new Vector2(0.0f, 0.0f);
 		transform.position = new Vector3(0.0f, 0.5f, 0.0f);
 

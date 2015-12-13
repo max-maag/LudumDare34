@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: dece76ad6aaa2784db9739d468d0aa60
+timeCreated: 1450040939
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: robot_drive_0
+    21300002: robot_jump_0
+    21300004: robot_land_0
+    21300006: robot_dead
+    21300008: robot_drive_1
+    21300010: robot_jump_1
+    21300012: robot_land_1
+    21300014: robot_chains
+    21300016: drive0
+    21300018: jump0
+    21300020: land0
+    21300022: dead0
+    21300024: drive1
+    21300026: jump1
+    21300028: dead1
+    21300030: land1
+    21300032: chains
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 120
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: drive0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 279
+        width: 184
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 91, y: 70}
+        - {x: 85, y: 76}
+        - {x: -87, y: 76}
+        - {x: -92, y: 69}
+        - {x: -92, y: -65}
+        - {x: -91, y: -67}
+        - {x: -81, y: -76}
+        - {x: 79, y: -76}
+        - {x: 85, y: -74}
+        - {x: 92, y: -65}
+        - {x: 92, y: 68}
+    - name: jump0
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 268
+        width: 202
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 101, y: 28.5}
+        - {x: 96, y: 61.5}
+        - {x: 88, y: 80.5}
+        - {x: -88, y: 80.5}
+        - {x: -96, y: 69.5}
+        - {x: -101, y: 7.5}
+        - {x: -101, y: -63.5}
+        - {x: -90, y: -80.5}
+        - {x: -15, y: -80.5}
+        - {x: 67, y: -77.5}
+        - {x: 88, y: -75.5}
+        - {x: 101, y: -50.5}
+    - name: land0
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 279
+        width: 183
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -85.5, y: 49.5}
+        - {x: -91.5, y: 42.5}
+        - {x: -91.5, y: -43.5}
+        - {x: -85.5, y: -49.5}
+        - {x: 87.5, y: -49.5}
+        - {x: 91.5, y: -42.5}
+        - {x: 91.5, y: 43.5}
+        - {x: 84.5, y: 49.5}
+    - name: dead0
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 364
+        width: 183
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 84.5, y: 65}
+        - {x: -86.5, y: 65}
+        - {x: -91.5, y: 58}
+        - {x: -91.5, y: -60}
+        - {x: -83.5, y: -65}
+        - {x: 83.5, y: -65}
+        - {x: 91.5, y: -58}
+        - {x: 91.5, y: 57}
+        - {x: 85.5, y: 64}
+    - name: drive1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 102
+        width: 184
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 84, y: 74}
+        - {x: -86, y: 74}
+        - {x: -92, y: 65}
+        - {x: -92, y: -65}
+        - {x: -91, y: -67}
+        - {x: -83, y: -74}
+        - {x: 86, y: -74}
+        - {x: 92, y: -66}
+        - {x: 92, y: 68}
+    - name: jump1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 83
+        width: 205
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 102.5, y: 26}
+        - {x: 94.5, y: 73}
+        - {x: 86.5, y: 81}
+        - {x: -93.5, y: 81}
+        - {x: -102.5, y: 36}
+        - {x: -102.5, y: -41}
+        - {x: -97.5, y: -78}
+        - {x: -87.5, y: -81}
+        - {x: 42.5, y: -81}
+        - {x: 84.5, y: -77}
+        - {x: 98.5, y: -73}
+        - {x: 102.5, y: -50}
+    - name: dead1
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 213
+        width: 183
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 91.5, y: 59}
+        - {x: 82.5, y: 65}
+        - {x: -84.5, y: 65}
+        - {x: -91.5, y: 59}
+        - {x: -91.5, y: -59}
+        - {x: -83.5, y: -65}
+        - {x: 79.5, y: -65}
+        - {x: 83.5, y: -64}
+        - {x: 91.5, y: -55}
+    - name: land1
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 89
+        width: 183
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -91.5, y: 61.5}
+        - {x: -91.5, y: -54.5}
+        - {x: -90.5, y: -54.5}
+        - {x: -84.5, y: -61.5}
+        - {x: 87.5, y: -61.5}
+        - {x: 91.5, y: -54.5}
+        - {x: 91.5, y: 55.5}
+        - {x: 83.5, y: 61.5}
+    - name: chains
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 83
+        width: 106
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46, y: 34}
+        - {x: -53, y: 25}
+        - {x: -53, y: -29}
+        - {x: -45, y: -34}
+        - {x: 48, y: -34}
+        - {x: 53, y: -27}
+        - {x: 53, y: 28}
+        - {x: 46, y: 34}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

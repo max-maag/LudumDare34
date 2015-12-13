@@ -5,7 +5,6 @@ public class PlayerAnimationController : MonoBehaviour {
 
 	const string ANIMATOR_STATE_PARAMETER = "animState";
 
-	const int STATE_IDLE = 0;
 	const int STATE_RUN = 1;
 	const int STATE_DIE = 2;
 	const int STATE_FALL = 3;
@@ -20,8 +19,8 @@ public class PlayerAnimationController : MonoBehaviour {
 	}
 
 	private void changeState(int state){
-		if (state < STATE_IDLE || state > STATE_LAND) {
-			Debug.LogError ("Animation state out of range: was " + state + " valid is [" + STATE_IDLE + ", " + STATE_LAND + "]");
+		if (state < STATE_RUN || state > STATE_LAND) {
+			Debug.LogError ("Animation state out of range: was " + state + " valid is [" + STATE_RUN + ", " + STATE_LAND + "]");
 		}
 		animator.SetInteger (ANIMATOR_STATE_PARAMETER, state);
 	}
