@@ -20,7 +20,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		body = this.gameObject.GetComponent<Rigidbody2D>();
 
 		// is on ground
-		// animationController = gameObject.GetComponent<PlayerAnimationController>();
+		animationController = gameObject.GetComponent<PlayerAnimationController>();
 	}
 
 	void Update () {
@@ -31,19 +31,19 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		if(c.gameObject.tag == Tags.BLOCK_TAG) {
+		if(c.gameObject.CompareTag(Tags.BLOCK_TAG)) {
 			Bounds boundBlock = c.collider.bounds;
-			Bounds boundPlayer = this.gameObject.GetComponent<Collider2D>().bounds;
+			Bounds boundPlayer = gameObject.GetComponent<Collider2D>().bounds;
 
 			// check if player is below the nudge threshold
-			if ((boundBlock.max.y - boundPlayer.min.y) > boundBlock.extents.y * collisionNudgeThreshold) {
+			if ((boundBlock.max.y - boundPlayer.min.y) > transform.localScale.y * collisionNudgeThreshold) {
 				Respawn();
 				return;
 			}
 
 			// player is inside the nudge threshold -> move the player up
 			if((boundBlock.max.y - boundPlayer.min.y) > 0) {
-				this.transform.position = new Vector3(transform.position.x, boundBlock.max.y+boundBlock.extents.y+epsilon, transform.position.z);
+				transform.position = new Vector3(transform.position.x, boundBlock.max.y+epsilon, transform.position.z);
 			}
 		}
 
@@ -72,7 +72,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	public void Respawn() {
 		isOnGround = true;
 		body.velocity = new Vector2(0.0f, 0.0f);
-		this.transform.position = new Vector3(0.0f, 0.5f, 0.0f);
+		transform.position = new Vector3(0.0f, 0.5f, 0.0f);
 
 		animationController.onSpawn ();
 	}
