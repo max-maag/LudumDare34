@@ -15,9 +15,7 @@ public class RepeatingSprite : MonoBehaviour {
 	// Update is called once per frame
 	// or when scene is changed in editor
 	void Update () {
-		#if UNITY_EDITOR
-		if(spriteRenderer != null)
+		if(Application.isEditor && spriteRenderer != null)
 			Start();
-		#endif
 	}
 }
