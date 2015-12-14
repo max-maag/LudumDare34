@@ -13,10 +13,8 @@ public class MapGenerator : MonoBehaviour {
 			new NormalDistribution(0,1),
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(5, 1),
-			new NormalDistribution(3, 0.8),
-			new NormalDistribution(0, 0.15),
 			new NormalDistribution(5, 1)
-		),
+		)/*,
 		new RandomBlockGenerator(
 			new NormalDistribution(0,2),
 			new NormalDistribution(2,0.5),
@@ -32,7 +30,7 @@ public class MapGenerator : MonoBehaviour {
 		new CannonSectionGenerator(new NormalDistribution(0,2),
 			new NormalDistribution(5,1),
 			new NormalDistribution(2,0.5)),
-		new FlappyBirdSectionGenerator()
+		new FlappyBirdSectionGenerator()*/
 	};
 
 	/// x coordinate at which the next element should be placed at (or: x coordinate up to which the level is defined)
