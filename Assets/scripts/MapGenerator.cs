@@ -18,9 +18,10 @@ public class MapGenerator : MonoBehaviour {
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(4,3)
 		)
-//		,
-//		new CannonSectionGenerator(new NormalDistribution(0,2),
-//			new NormalDistribution(2,0.5))
+		,
+		new CannonSectionGenerator(new NormalDistribution(0,2),
+			new NormalDistribution(5,1),
+			new NormalDistribution(2,0.5))
 	};
 
 	/// x coordinate at which the next element should be placed at (or: x coordinate up to which the level is defined)
@@ -30,7 +31,7 @@ public class MapGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject lastElement = GameObject.FindWithTag(Tags.GROUND_TAG);
+		lastElement = GameObject.FindWithTag(Tags.GROUND_TAG);
 		xNextElement = lastElement.GetComponent<Collider2D> ().bounds.max.x;
 	}
 	
