@@ -91,10 +91,20 @@ public class PlayerMovementScript : MonoBehaviour {
 	void Die() {
 		maxSpeed = 0;
 		movementSpeed = 0;
-//
-//		Vector2 playerPosition = body.position;
-//
-//		(GameObject) Instantiate (Resources.Load (ROBOT_CHAINS), , Quaternion.identity);
+
 		animationController.onDie ();
+
+		// spawn two chain prefabs (one in front of the robot, one behind) and toss them around
+		Vector3 frontChainsLocalPosition = new Vector3 (-0.342f, -0.33f, -1f);
+		GameObject frontChains = (GameObject) Instantiate (Resources.Load (ROBOT_CHAINS), gameObject.transform.position + frontChainsLocalPosition, Quaternion.identity);
+		Rigidbody2D frontChainsBody = frontChains.GetComponent<Rigidbody2D> ();
+		frontChainsBody.AddForce(new Vector2(-200f, 300f));
+		frontChainsBody.angularVelocity = 1000f;
+
+		Vector3 backChainsLocalPosition = new Vector3 (0.32f, -0.33f, 1f);
+		GameObject backChains = (GameObject) Instantiate (Resources.Load (ROBOT_CHAINS), gameObject.transform.position + backChainsLocalPosition, Quaternion.identity);
+		Rigidbody2D backChainsBody = backChains.GetComponent<Rigidbody2D> ();
+		backChainsBody.AddForce(new Vector2(50f, 400f));
+		backChainsBody.angularVelocity = 1500f;
 	}
 }
