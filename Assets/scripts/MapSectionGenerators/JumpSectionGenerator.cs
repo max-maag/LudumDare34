@@ -2,12 +2,19 @@
 using System.Collections;
 
 public class JumpSectionGenerator : IMapSectionGenerator {
+	private const float MIN_GAP = 0.2f;
+
+	private const float MIN_BLOCK_LENGTH = 0.2f;
+	private const float MAX_BLOCK_LENGTH = 0.2f;
+
 	public NormalDistribution yBlockDistribution;
 	public NormalDistribution blockWidthDistribution;
 	public NormalDistribution blockHeightDistribution;
 	public NormalDistribution gapSizeDistribution;
 	public NormalDistribution yGroundDistribution;
 	public NormalDistribution groundWidthDistribution;
+
+	private float maxPlayerSpeed = 4f;
 
 	public JumpSectionGenerator(
 		NormalDistribution yBlock,
@@ -23,7 +30,6 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 		gapSizeDistribution = gapSize;
 		yGroundDistribution = yGround;
 		groundWidthDistribution = groundWidth;
-
 	}
 
 
