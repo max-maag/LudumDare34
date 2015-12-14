@@ -18,10 +18,10 @@ public class RandomBlockGenerator : IMapSectionGenerator {
 		
 	}
 
-	public GameObject GenerateSection(float difficulty, float xNextElement, GameObject lastElement) {
+	public GameObject GenerateSection(float difficulty, float xNextElement, float lastY, GameObject lastElement) {
 		float heightOfBlock = (float) heightOfBlockDistribution.NextNormal ();
 		float widthOfBlock = (float) widthOfBlockDistribution.NextNormal ();
-		float yOffsetOfBlock = (float)yOffsetOfBlockDistribution.NextNormal ();
+		float yOffsetOfBlock = 0.8f * lastY + (float) yOffsetOfBlockDistribution.NextNormal ();
 
 		if(Random.Range (0, 2) % 2 == 0) {
 			return BlockFactory.instance.getMultiBlockObstacle (xNextElement, yOffsetOfBlock, widthOfBlock, new float[] { 2.0f, 3.0f }, new float[] { 3 });
