@@ -6,6 +6,13 @@ public class NormalDistribution : MonoBehaviour {
 	public double mean;
 	public double dev;
 
+	public NormalDistribution() {}
+
+	public NormalDistribution(double m, double d) {
+		mean = m;
+		dev = d;
+	}
+
 	private System.Random random = new System.Random(seedGenerator.Next());
 
 	public double NextNormal() {
