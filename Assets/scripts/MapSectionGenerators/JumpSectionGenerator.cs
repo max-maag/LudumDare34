@@ -2,10 +2,48 @@
 using System.Collections;
 
 public class JumpSectionGenerator : IMapSectionGenerator {
-	public float GenerateSection(float difficulty, float lastX) {
-		BlockFactory.instance.getSingleBlockObstacle(lastX, 0, 2, 1);
-		GroundFactory.instance.getEarth(lastX+3, 1, 5);
+	public NormalDistribution yBlockDistribution;
+	public NormalDistribution blockWidthDistribution;
+	public NormalDistribution blockHeightDistribution;
+	public NormalDistribution gapSizeDistribution;
+	public NormalDistribution yGroundDistribution;
+	public NormalDistribution groundWidthDistribution;
 
-		return lastX+8;
+	public JumpSectionGenerator(
+		NormalDistribution yBlock,
+		NormalDistribution blockWidth,
+		NormalDistribution blockHeight,
+		NormalDistribution gapSize,
+		NormalDistribution yGround,
+		NormalDistribution groundWidth) {
+
+		yBlockDistribution = yBlock;
+		blockWidthDistribution = blockWidth;
+		blockHeightDistribution = blockHeight;
+		gapSizeDistribution = gapSize;
+		yGroundDistribution = yGround;
+		groundWidthDistribution = groundWidth;
+
+	}
+
+
+	public float GenerateSection(float difficulty, float lastX) {
+		float blockWidth = (float) blockWidthDistribution.NextNormal();
+		BlockFactory.instance.getSingleBlockObstacle(
+			lastX,
+			(float) yBlockDistribution.NextNormal(),
+			blockWidth,
+			(float) blockHeightDistribution.NextNormal());
+
+
+		float groundX = lastX + blockWidth + (float) gapSizeDistribution.NextNormal();
+		float groundWidth = (float) groundWidthDistribution.NextNormal();
+
+		GroundFactory.instance.getEarth(
+			groundX,
+			(float) yGroundDistribution.NextNormal(),
+			groundWidth);
+
+		return groundX + groundWidth;
 	}
 }
