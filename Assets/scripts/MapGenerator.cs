@@ -10,11 +10,11 @@ public class MapGenerator : MonoBehaviour {
 
 	private readonly IMapSectionGenerator[] sectionGenerators = {
 		new JumpSectionGenerator(
-			new NormalDistribution(0,1),
+			new NormalDistribution(-0.5,0.5),
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(5, 1),
 			new NormalDistribution(5, 1)
-		)/*,
+		),
 		new RandomBlockGenerator(
 			new NormalDistribution(0,2),
 			new NormalDistribution(2,0.5),
@@ -29,8 +29,8 @@ public class MapGenerator : MonoBehaviour {
 		),
 		new CannonSectionGenerator(new NormalDistribution(0,2),
 			new NormalDistribution(5,1),
-			new NormalDistribution(2,0.5)),
-		new FlappyBirdSectionGenerator()*/
+			new NormalDistribution(4,0.5)),
+		new FlappyBirdSectionGenerator()
 	};
 
 	/// x coordinate at which the next element should be placed at (or: x coordinate up to which the level is defined)
@@ -47,12 +47,14 @@ public class MapGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		// TODO get this from the menu or somewhere
-		difficulty = EASY_DIFFICULTY;
+		difficulty = HARD_DIFFICULTY;
 		adjustDifficulty (0);
 
 		lastElement = GameObject.FindWithTag (Tags.GROUND_TAG);
 		xNextElement = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.x;
 		lastY = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.y;
+
+		xNextElementInitial = xNextElement;
 
 		lastElement = new BlockAndGroundGenerator(
 			new NormalDistribution(0,1),
@@ -70,7 +72,7 @@ public class MapGenerator : MonoBehaviour {
 	void Update () {
 		float xRightOfCamera = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 		while(xNextElement <= xRightOfCamera) {
-			lastElement =  sectionGenerators[Random.Range(0, sectionGenerators.Length)].GenerateSection(0, xNextElement, lastY, lastElement);
+			lastElement =  sectionGenerators[Random.Range(0, sectionGenerators.Length)].GenerateSection(currentDifficulty, xNextElement, lastY, lastElement);
 			xNextElement = lastElement.GetComponentInChildren<Collider2D>().bounds.max.x;
 			lastY = lastElement.GetComponentInChildren<Collider2D>().bounds.max.y;
 			adjustDifficulty (xNextElement - xNextElementInitial);

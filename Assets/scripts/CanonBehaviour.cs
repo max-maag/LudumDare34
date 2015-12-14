@@ -3,38 +3,8 @@ using System.Collections;
 
 public class CanonBehaviour : MonoBehaviour {
 
-	// cooldown of the canon
-	private float cooldown;
-
-	// shooting rate of the canon
-	public float shootingRate;
-
 	public GameObject bulletPrefab;
 	public float BulletSpeed;
-
-	private Animator animator;
-
-	const string ANIMATOR_STATE_PARAMETER = "animState";
-	const int STATE_SHOOT = 1;
-
-	void Start() {
-		animator = gameObject.GetComponent<Animator>();
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-		cooldown -= Time.deltaTime;
-	
-		if(cooldown <= 0.0f) {
-			cooldown = shootingRate;
-			shoot();
-		}
-	}
-
-	void shoot() {
-		animator.SetInteger (ANIMATOR_STATE_PARAMETER, STATE_SHOOT);
-	}
 
 	void OnShootAnimationFinished() {
 		SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();

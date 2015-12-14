@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class JumpSectionGenerator : IMapSectionGenerator {
-	private const float MIN_GAP = 1f; // player width
+	private const float MIN_GAP = 2f; // 2 * player width
 
 	private const float PLAYER_MAX_SPEED = 5f;
 	private const float BLOCK_MAX_SPEED = 8f;
@@ -30,8 +30,9 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 
 
 	public GameObject GenerateSection(float difficulty, float lastX, float lastY, GameObject lastElement) {
+		
 		float blockWidth = (float) blockWidthDistribution.NextNormal();
-		float blockY = 0.8f * lastY + (float) yBlockDistribution.NextNormal();
+		float blockY = 0.5f * lastY + (float) yBlockDistribution.NextNormal();
 
 		BlockFactory.instance.getSingleBlockObstacle(
 			lastX,
@@ -42,12 +43,16 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 		float maxBlockOffset = BLOCK_MAX_SPEED * 2 * blockWidth/PLAYER_MAX_SPEED;
 		float minY = Camera.main.ViewportToWorldPoint(Vector3.zero).y;
 
+		Debug.Log(getMaxGapWidth(blockY + /*difficulty */ maxBlockOffset, minY));
+
 		float gapWidth = Mathf.Max(
-			Random.Range(0, difficulty) * getMaxGapWidth(blockY + difficulty * maxBlockOffset, minY),
+			Random.Range(difficulty, 1f) * getMaxGapWidth(blockY + maxBlockOffset, minY),
 			MIN_GAP
 		);
 
-		float groundY = Mathf.Max(blockY + Random.Range(-1,1) * difficulty * getMaxGapHeight(gapWidth), minY);
+		float groundY = 0.8f * Mathf.Max(
+			blockY + Random.Range(difficulty,1) * (maxBlockOffset + getMaxGapHeight(gapWidth) - MIN_GAP/2),
+			minY);
 
 		float groundX = lastX + blockWidth + gapWidth;
 			
@@ -60,8 +65,8 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 	}
 
 	private float getMaxGapWidth(float y0, float yMin) {
-		float p = PLAYER_MAX_SPEED / 2 / PLAYER_GRAVITY;
-		return -p + Mathf.Sqrt(p + (yMin - y0)/PLAYER_GRAVITY);
+		float p = BLOCK_MAX_SPEED * 0.5f / PLAYER_GRAVITY;
+		return PLAYER_MAX_SPEED * (-p + Mathf.Sqrt(p + (yMin - y0)/PLAYER_GRAVITY)) + MIN_GAP/2;
 	}
 
 	private float getMaxGapHeight(float width) {
