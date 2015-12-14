@@ -31,7 +31,7 @@ public class MapGenerator : MonoBehaviour {
 		),
 		new CannonSectionGenerator(new NormalDistribution(0,2),
 			new NormalDistribution(5,1),
-			new NormalDistribution(2,0.5)),
+			new NormalDistribution(4,0.5)),
 		new FlappyBirdSectionGenerator()
 	};
 
