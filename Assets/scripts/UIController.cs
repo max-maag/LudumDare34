@@ -40,6 +40,6 @@ public class UIController : MonoBehaviour {
 	}
 
 	public void OnRestartButtonClick() {
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
