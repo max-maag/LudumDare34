@@ -96,8 +96,8 @@ public class PlayerMovementScript : MonoBehaviour {
 			// no more acceleration
 			maxSpeed = 0;
 			movementSpeed = 0;
-			// not setting x vel to 0 would keep the player falling to the right indefinitely when dying by leaving the screen which would also keep the camera movement
-			body.velocity = new Vector2 (0, body.velocity.y);
+			// keeping the drag at 0 would keep the player falling to the right indefinitely when dying by leaving the screen which would also keep the camera movement
+			body.drag = 1.5f;
 
 			animationController.onDie ();
 
