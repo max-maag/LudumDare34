@@ -77,7 +77,9 @@ public class BlockFactory : MonoBehaviour {
 			if(cannonsOnBlock[i]) {
 				GameObject cannon = (GameObject) Instantiate (Resources.Load (CANNON), Vector3.zero, Quaternion.identity);
 				cannon.transform.parent = obstacle.transform;
-				cannon.transform.localPosition = singleBlock.transform.localPosition+ new Vector3(0.0f,cannon.GetComponent<SpriteRenderer>().bounds.extents.y  + singleBlock.GetComponent<SpriteRenderer>().bounds.extents.y);
+				Bounds singleBlockBound = singleBlock.GetComponent<Collider2D>().bounds;
+				Bounds cannonBound = cannon.GetComponent<SpriteRenderer>().bounds;
+				cannon.transform.localPosition = singleBlock.transform.localPosition+ new Vector3(-singleBlockBound.extents.x+cannonBound.extents.x,cannonBound.extents.y  + singleBlockBound.extents.y);
 			}
 
 			if(i != numberOfBlocks -1) {

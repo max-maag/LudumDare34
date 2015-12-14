@@ -101,7 +101,9 @@ public class BlockControl : MonoBehaviour {
 	}
 
 	void OnPlayerDeath() {
-		currentBlock.velocity = Vector2.zero;
+		if(currentBlock != null)
+			currentBlock.velocity = Vector2.zero;
+		
 		enabled = false;
 	}
 }

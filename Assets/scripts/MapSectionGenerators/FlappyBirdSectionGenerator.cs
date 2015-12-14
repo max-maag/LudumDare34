@@ -38,15 +38,14 @@ public class FlappyBirdSectionGenerator : IMapSectionGenerator {
 		widthOfGroundDistribution = new NormalDistribution(2, 1);
 	}
 
-	public GameObject GenerateSection(float difficulty, float xNextElement, GameObject lastElement) {
+	public GameObject GenerateSection(float difficulty, float xNextGenerate, float lastY, GameObject lastElement) {
 		string tileset = GroundFactory.STONE;
-		Vector2 lastElementBounds = lastElement.GetComponentInChildren<Collider2D> ().bounds.max;
 	
 		// determine a fair y value for the block
 		float yBlockLowest = Camera.main.ViewportToWorldPoint (Vector2.zero).y + MINIMUM_HEIGHT_OF_ELEMENT_VISIBLE;
 		float yBlockHighest = Camera.main.ViewportToWorldPoint (Vector2.one).y - MINIMUM_HEIGHT_OF_ELEMENT_VISIBLE;
 
-		float yBlockDistributionMode = CENTERING_FACTOR * lastElementBounds.y;
+		float yBlockDistributionMode = CENTERING_FACTOR * lastY;
 		float yBlock = Random.Range(yBlockDistributionMode - Y_OFFSET_OF_BLOCK_DEVIATION, yBlockDistributionMode + Y_OFFSET_OF_BLOCK_DEVIATION);
 		if(yBlock > yBlockHighest) {
 			yBlock = yBlockHighest;
@@ -58,11 +57,11 @@ public class FlappyBirdSectionGenerator : IMapSectionGenerator {
 		float blockWidth = Random.Range(MINIMUM_OBSTACLE_WIDTH, MAXIMUM_OBSTACLE_WIDTH);
 		float blockHeight = OBSTACLE_HEIGHT;
 		BlockFactory.instance.getSingleBlockObstacle(
-			xNextElement,
+			xNextGenerate,
 			yBlock,
 			blockWidth,
 			blockHeight);
-		xNextElement += blockWidth;
+		xNextGenerate += blockWidth;
 
 		// determine a fair y value for the hole by calculating a normally distributed offset from the block y value
 		float holeSize = MAXIMUM_HOLE_SIZE - (MAXIMUM_HOLE_SIZE - MINIMUM_HOLE_SIZE) * difficulty;
@@ -79,17 +78,17 @@ public class FlappyBirdSectionGenerator : IMapSectionGenerator {
 
 		// create the gap between block and ground
 		float gapSize = Random.Range(MINIMUM_GAP_SIZE, MAXIMUM_GAP_SIZE);
-		xNextElement += gapSize;
+		xNextGenerate += gapSize;
 
 		// generate the grounds
 		float groundWidth = Mathf.Max ((float) widthOfGroundDistribution.NextNormal(), MINIMUM_GROUND_WIDTH);
 		GameObject newLastElement = GroundFactory.GetGround (
-			xNextElement,
+			xNextGenerate,
 			yHole - holeSize / 2,
 			groundWidth,
 			tileset);
 		GroundFactory.GetFloatingGround (
-			xNextElement,
+			xNextGenerate,
 			yHole + holeSize / 2, 
 			groundWidth,
 			tileset);
