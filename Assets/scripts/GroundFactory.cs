@@ -9,7 +9,11 @@ public class GroundFactory : MonoBehaviour
 	public const string SNOW = "Snow";
 	public const string STONE = "Stone";
 	public const string SAND = "Sand";
+
 	private const string MULTI_GROUND = "MultiGround";
+
+	/// bonus height added to floating ground blocks to avoid skipping blocks by walking on top of the screen (à la Super Mario warp zone access)
+	private const float ABOVE_CAMERA_HEIGHT_BONUS = 50f;
 
 	private GroundFactory () {}
 
@@ -46,6 +50,18 @@ public class GroundFactory : MonoBehaviour
 		return multi;
 	}
 
-	// TODO add GroundTunnel
+	public static GameObject GetFloatingGround(float xLeft, float yBottom, float width, string tileset) {
+		GameObject multi = (GameObject) Instantiate (Resources.Load (MULTI_GROUND), Vector3.zero, Quaternion.identity);
+		GameObject ground = (GameObject) Instantiate (Resources.Load (tileset + "Center"), Vector3.zero, Quaternion.identity);
+		ground.transform.parent = multi.transform;
+		Vector3 size = ground.GetComponent<Collider2D> ().bounds.size;
 
+		float yTopOfScreen = Camera.main.ViewportToWorldPoint (Vector2.one).y;
+		float desiredWorldHeight = yTopOfScreen - yBottom + ABOVE_CAMERA_HEIGHT_BONUS;
+		ground.transform.localScale = new Vector3 (width, desiredWorldHeight / size.y);
+		ground.transform.localPosition = new Vector3 (0, desiredWorldHeight / 2);
+
+		multi.transform.position = new Vector3 (width / 2 + xLeft, yBottom);
+		return multi;
+	}
 }

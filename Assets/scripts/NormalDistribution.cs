@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class NormalDistribution : MonoBehaviour {
+public class NormalDistribution {
 	private static readonly System.Random seedGenerator = new System.Random();
 	public double mean;
 	public double dev;
