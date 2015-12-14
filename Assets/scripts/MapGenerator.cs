@@ -43,8 +43,15 @@ public class MapGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// TODO get this from the menu or somewhere
-		difficulty = NORMAL_DIFFICULTY;
+		
+		int difficultyFromMenu = PlayerPrefs.GetInt(PlayerPrefsStrings.DIFFICULTY_FIELD);
+		switch(difficultyFromMenu) {
+			case 0: difficulty = EASY_DIFFICULTY; break;
+			case 1: difficulty = NORMAL_DIFFICULTY; break;
+			case 2: difficulty = HARD_DIFFICULTY; break;
+			default: difficulty = EASY_DIFFICULTY; break;
+		}
+			
 		adjustDifficulty (0);
 
 		lastElement = GameObject.FindWithTag (Tags.GROUND_TAG);
