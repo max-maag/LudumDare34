@@ -56,6 +56,8 @@ public class MapGenerator : MonoBehaviour {
 		xNextElement = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.x;
 		lastY = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.y;
 
+		xNextElementInitial = xNextElement;
+
 		lastElement = new BlockAndGroundGenerator(
 			new NormalDistribution(0,1),
 			new NormalDistribution(3, 0.5),
@@ -72,7 +74,7 @@ public class MapGenerator : MonoBehaviour {
 	void Update () {
 		float xRightOfCamera = Camera.main.ViewportToWorldPoint(Vector3.right).x;
 		while(xNextElement <= xRightOfCamera) {
-			lastElement =  sectionGenerators[Random.Range(0, sectionGenerators.Length)].GenerateSection(0, xNextElement, lastY, lastElement);
+			lastElement =  sectionGenerators[Random.Range(0, sectionGenerators.Length)].GenerateSection(currentDifficulty, xNextElement, lastY, lastElement);
 			xNextElement = lastElement.GetComponentInChildren<Collider2D>().bounds.max.x;
 			lastY = lastElement.GetComponentInChildren<Collider2D>().bounds.max.y;
 			adjustDifficulty (xNextElement - xNextElementInitial);
