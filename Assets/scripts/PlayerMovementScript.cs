@@ -5,12 +5,15 @@ using System.Collections;
  * class managing the movement of the player
  */
 public class PlayerMovementScript : MonoBehaviour {
+
+	private const string ROBOT_CHAINS = "RobotChains";
 	
 	public float movementSpeed;
 	public float maxSpeed;
 	public float collisionNudgeThreshold;
 	public float epsilon;
 	private bool isTouchingFloor;
+	private bool isDead;
 
 	private PlayerAnimationController animationController;
 
@@ -87,7 +90,29 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	void Die() {
-		Debug.Log("player died");
-		Utils.SendGlobalMessage("OnPlayerDeath");
+		if (!isDead) {
+			isDead = true;
+
+			// no more acceleration
+			maxSpeed = 0;
+			movementSpeed = 0;
+			// not setting x vel to 0 would keep the player falling to the right indefinitely when dying by leaving the screen which would also keep the camera movement
+			body.velocity = new Vector2 (0, body.velocity.y);
+
+			animationController.onDie ();
+
+			// spawn two chain prefabs (one in front of the robot, one behind) and toss them around
+			Vector3 frontChainsLocalPosition = new Vector3 (-0.342f, -0.33f, -1f);
+			GameObject frontChains = (GameObject)Instantiate (Resources.Load (ROBOT_CHAINS), gameObject.transform.position + frontChainsLocalPosition, Quaternion.identity);
+			Rigidbody2D frontChainsBody = frontChains.GetComponent<Rigidbody2D> ();
+			frontChainsBody.AddForce (new Vector2 (-200f, 300f));
+			frontChainsBody.angularVelocity = 1000f;
+
+			Vector3 backChainsLocalPosition = new Vector3 (0.32f, -0.33f, 1f);
+			GameObject backChains = (GameObject)Instantiate (Resources.Load (ROBOT_CHAINS), gameObject.transform.position + backChainsLocalPosition, Quaternion.identity);
+			Rigidbody2D backChainsBody = backChains.GetComponent<Rigidbody2D> ();
+			backChainsBody.AddForce (new Vector2 (50f, 400f));
+			backChainsBody.angularVelocity = 1500f;
+		}
 	}
 }

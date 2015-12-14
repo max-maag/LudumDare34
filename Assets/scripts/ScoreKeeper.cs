@@ -5,12 +5,21 @@ public class ScoreKeeper : MonoBehaviour {
 	[HideInInspector]
 	public float score;
 
+	private bool stop;
+
 	// Use this for initialization
 	void Start () {
 		score = 0;
 	}
 
 	void Update () {
-		score += 50 * Time.deltaTime;
+		if (!stop) {
+			score += 50 * Time.deltaTime;
+		}
 	}
+
+	void OnPlayerDeath() {
+		stop = true;
+	}
+		
 }

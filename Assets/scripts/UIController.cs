@@ -14,36 +14,43 @@ public class UIController : MonoBehaviour {
 
 	private bool isPlayerDead;
 
+	public float timeTillRestartPossible;
+
+	private const string UP_BUTTON_NAME = "up";
+	private const string DOWN_BUTTON_NAME = "down";
+
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1;
 		startTime = Time.time;
 		playerScore = gameObject.GetComponent<ScoreKeeper>();
-		isPlayerDead = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(!isPlayerDead) {
 			score.text = "Score: " + (long) Mathf.Round(playerScore.score);
+		} else {
+			if(Input.GetButton(UP_BUTTON_NAME) || Input.GetButton(DOWN_BUTTON_NAME)) {
+				OnRestartButtonClick();
+			}
+			timeTillRestartPossible -= Time.deltaTime;
 		}
 	}
 
 	void OnPlayerDeath() {
+		isPlayerDead = true;
 		if(gameOverScreen != null)
 			gameOverScreen.gameObject.SetActive(true);
 
-		if(score != null)
+		if(score != null) {
 			score.gameObject.SetActive(false);
-
+		}
 		gameOverScore.text = "Score: " + (long) Mathf.Round(playerScore.score);
-
-		Time.timeScale = 0;
-
-		isPlayerDead = true;
 	}
 
 	public void OnRestartButtonClick() {
-		SceneManager.LoadScene(0);
+		if(timeTillRestartPossible <= 0.0f)
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

@@ -14,7 +14,7 @@ GameObject:
   - 95: {fileID: 9598534}
   - 114: {fileID: 11452748}
   - 58: {fileID: 5812556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465104}
   - 58: {fileID: 5824538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerTriggerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109480}

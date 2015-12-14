@@ -36,4 +36,8 @@ public class PlayerAnimationController : MonoBehaviour {
 	public void onDie() {
 		changeState (STATE_DIE);
 	}
+
+	void onDead() {
+		Utils.SendGlobalMessage(Utils.ON_PLAYER_DEATH);
+	}
 }
