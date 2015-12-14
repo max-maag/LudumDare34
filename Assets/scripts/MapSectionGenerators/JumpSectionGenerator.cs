@@ -39,10 +39,10 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 		float groundX = lastX + blockWidth + (float) gapSizeDistribution.NextNormal();
 		float groundWidth = (float) groundWidthDistribution.NextNormal();
 
-		GroundFactory.instance.getEarth(
+		GroundFactory.GetGround(
 			groundX,
-			(float) yGroundDistribution.NextNormal(),
-			groundWidth);
+			(float) yBlockDistribution.NextNormal(),
+			groundWidth, GroundFactory.GRASS);
 
 		return groundX + groundWidth;
 	}
