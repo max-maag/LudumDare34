@@ -6,6 +6,7 @@ public class BlockControl : MonoBehaviour {
 	private const string UP_BUTTON_NAME = "up";
 	private const string DOWN_BUTTON_NAME = "down";
 	private const string BLOCK_TAG = "block";
+	private const string BLOCK_LAYER = "level geometry";
 
 	public float maxSpeed = 1f;
 	public float blockSwitchCooldown = 0.25f;
@@ -91,9 +92,12 @@ public class BlockControl : MonoBehaviour {
 	}
 
 	private void setBlockState(GameObject block, int state) {
-		for(int i=0; i<block.transform.childCount; i++)
-			//block.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().color = color;
-			block.transform.GetChild(i).GetChild(0).GetComponent<Animator>().SetInteger(ANIMATOR_STATE_PARAMETER, state);
+		for(int i=0; i<block.transform.childCount; i++) {
+			Transform singleBlock = block.transform.GetChild(i);
+			if(LayerMask.LayerToName(singleBlock.gameObject.layer).Equals(BLOCK_LAYER)) {
+				singleBlock.transform.GetChild(0).GetComponent<Animator>().SetInteger(ANIMATOR_STATE_PARAMETER, state);
+			}
+		}
 	}
 
 	void OnPlayerDeath() {

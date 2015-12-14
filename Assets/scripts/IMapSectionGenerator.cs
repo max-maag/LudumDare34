@@ -2,5 +2,5 @@
 using System.Collections;
 
 public interface IMapSectionGenerator {
-	float GenerateSection(float difficulty, float lastX);
+	GameObject GenerateSection(float difficulty, float xNextGenerate, GameObject lastElement);
 }
