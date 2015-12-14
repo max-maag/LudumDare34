@@ -44,12 +44,18 @@ public class PlayerMovementScript : MonoBehaviour {
 				return;
 			}
 		}
-
+			
 		// touching ground after being in the air
 		bool collisionWithGroundOrBlock = c.gameObject.CompareTag(Tags.GROUND_TAG) || c.gameObject.CompareTag(Tags.BLOCK_TAG);
 		if(!isTouchingFloor && collisionWithGroundOrBlock) {
 			isTouchingFloor = true;
 			animationController.onTouchingFloorChanged (isTouchingFloor);
+		}
+
+		// die if hit by bullet
+		if(c.gameObject.CompareTag(Tags.BULLET_TAG)) {
+			Die();
+			Destroy(c.gameObject);
 		}
 	}
 
