@@ -19,7 +19,6 @@ public class UIController : MonoBehaviour {
 		Time.timeScale = 1;
 		startTime = Time.time;
 		playerScore = gameObject.GetComponent<ScoreKeeper>();
-		isPlayerDead = false;
 	}
 	
 	// Update is called once per frame
@@ -30,17 +29,14 @@ public class UIController : MonoBehaviour {
 	}
 
 	void OnPlayerDeath() {
+		isPlayerDead = true;
 		if(gameOverScreen != null)
 			gameOverScreen.gameObject.SetActive(true);
 
-		if(score != null)
+		if(score != null) {
 			score.gameObject.SetActive(false);
-
+		}
 		gameOverScore.text = "Score: " + (long) Mathf.Round(playerScore.score);
-
-		Time.timeScale = 0;
-
-		isPlayerDead = true;
 	}
 
 	public void OnRestartButtonClick() {

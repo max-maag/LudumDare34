@@ -5,6 +5,8 @@ using System.Collections;
  * class managing the movement of the player
  */
 public class PlayerMovementScript : MonoBehaviour {
+
+	private const string ROBOT_CHAINS = "RobotChains";
 	
 	public float movementSpeed;
 	public float maxSpeed;
@@ -87,7 +89,12 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	void Die() {
-		Debug.Log("player died");
-		Utils.SendGlobalMessage("OnPlayerDeath");
+		maxSpeed = 0;
+		movementSpeed = 0;
+//
+//		Vector2 playerPosition = body.position;
+//
+//		(GameObject) Instantiate (Resources.Load (ROBOT_CHAINS), , Quaternion.identity);
+		animationController.onDie ();
 	}
 }
