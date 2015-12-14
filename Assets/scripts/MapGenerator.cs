@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class MapGenerator : MonoBehaviour {
+
+	public static MapGenerator instance;
 	private const string PLAYER_TAG = "player";
 
 	private const float EASY_DIFFICULTY = -150;
@@ -38,12 +40,12 @@ public class MapGenerator : MonoBehaviour {
 	private float lastY;
 	private GameObject lastElement;
 	
-	private float currentDifficulty;
+	public float currentDifficulty;
 	private float difficulty;	
 
 	// Use this for initialization
 	void Start () {
-		
+		instance = this;
 		int difficultyFromMenu = PlayerPrefs.GetInt(PlayerPrefsStrings.DIFFICULTY_FIELD);
 		switch(difficultyFromMenu) {
 			case 0: difficulty = EASY_DIFFICULTY; break;
