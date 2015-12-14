@@ -29,9 +29,10 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 
 	public GameObject GenerateSection(float difficulty, float lastX, GameObject lastElement) {
 		float blockWidth = (float) blockWidthDistribution.NextNormal();
+		float blockHeight = (float) yBlockDistribution.NextNormal();
 		BlockFactory.instance.getSingleBlockObstacle(
 			lastX,
-			(float) yBlockDistribution.NextNormal(),
+			blockHeight,
 			blockWidth,
 			(float) blockHeightDistribution.NextNormal());
 
@@ -41,7 +42,7 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 
 		return GroundFactory.GetGround(
 			groundX,
-			(float) yBlockDistribution.NextNormal(),
+			blockHeight + (float) yBlockDistribution.NextNormal(),
 			groundWidth, GroundFactory.GRASS);
 	}
 }

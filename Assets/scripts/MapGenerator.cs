@@ -6,11 +6,11 @@ public class MapGenerator : MonoBehaviour {
 
 	private readonly IMapSectionGenerator[] sectionGenerators = {
 		new JumpSectionGenerator(
-			new NormalDistribution(0,2),
+			new NormalDistribution(0,1),
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(5, 1),
 			new NormalDistribution(3, 0.8),
-			new NormalDistribution(0.5, 0.3),
+			new NormalDistribution(0, 0.2),
 			new NormalDistribution(5, 1)
 		),
 		new RandomBlockGenerator(
