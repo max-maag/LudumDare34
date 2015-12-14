@@ -5,6 +5,10 @@ public class GroundFactory : MonoBehaviour
 {
 	public static GroundFactory instance;
 	public const string GRASS = "Grass";
+	public const string DIRT = "Dirt";
+	public const string SNOW = "Snow";
+	public const string STONE = "Stone";
+	public const string SAND = "Sand";
 	private const string MULTI_GROUND = "MultiGround";
 
 	private GroundFactory () {}

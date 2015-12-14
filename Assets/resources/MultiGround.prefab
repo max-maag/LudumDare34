@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 433752}
   - 114: {fileID: 11492108}
   m_Layer: 9
-  m_Name: GameObject
+  m_Name: MultiGround
   m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
