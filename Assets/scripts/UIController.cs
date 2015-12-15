@@ -20,7 +20,6 @@ public class UIController : MonoBehaviour {
 
 	private const string UP_BUTTON_NAME = "up";
 	private const string DOWN_BUTTON_NAME = "down";
-	private const string HIGHSCORE_NAME = "highscore";
 
 	// Use this for initialization
 	void Start () {
@@ -56,11 +55,11 @@ public class UIController : MonoBehaviour {
 
 		if(!scoreCheckDone) {
 			if(checkScore(score)){
-				PlayerPrefs.SetFloat(HIGHSCORE_NAME,score);
-				highScoreTextfield.text = "New highscore: " +PlayerPrefs.GetFloat(HIGHSCORE_NAME) + "!!!";
+				PlayerPrefs.SetFloat(PlayerPrefsStrings.HIGHSCORE_FIELD,score);
+				highScoreTextfield.text = "New highscore: " +PlayerPrefs.GetFloat(PlayerPrefsStrings.HIGHSCORE_FIELD) + "!!!";
 			}
 			else {
-				highScoreTextfield.text = "Highscore: " +PlayerPrefs.GetFloat(HIGHSCORE_NAME);
+				highScoreTextfield.text = "Highscore: " +PlayerPrefs.GetFloat(PlayerPrefsStrings.HIGHSCORE_FIELD);
 			}
 			scoreCheckDone = true;
 		}
@@ -74,8 +73,8 @@ public class UIController : MonoBehaviour {
 	}
 
 	bool checkScore(float newScore) {
-		if(PlayerPrefs.HasKey(HIGHSCORE_NAME)){
-			return PlayerPrefs.GetFloat(HIGHSCORE_NAME)<newScore;
+		if(PlayerPrefs.HasKey(PlayerPrefsStrings.HIGHSCORE_FIELD)){
+			return PlayerPrefs.GetFloat(PlayerPrefsStrings.HIGHSCORE_FIELD)<newScore;
 		}
 		return true;
 	}

@@ -2,11 +2,13 @@
 using System.Collections;
 
 public class MapGenerator : MonoBehaviour {
+
+	public static MapGenerator instance;
 	private const string PLAYER_TAG = "player";
 
-	private const float EASY_DIFFICULTY = -500;
-	private const float NORMAL_DIFFICULTY = 0;
-	private const float HARD_DIFFICULTY = 250;
+	private const float EASY_DIFFICULTY = -150;
+	private const float NORMAL_DIFFICULTY = -50;
+	private const float HARD_DIFFICULTY = 100;
 
 	private readonly IMapSectionGenerator[] sectionGenerators = {
 		new JumpSectionGenerator(
@@ -14,11 +16,6 @@ public class MapGenerator : MonoBehaviour {
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(5, 1),
 			new NormalDistribution(5, 1)
-		),
-		new RandomBlockGenerator(
-			new NormalDistribution(0,2),
-			new NormalDistribution(2,0.5),
-			new NormalDistribution(4,3)
 		),
 		new BlockAndGroundGenerator(
 			new NormalDistribution(0,1),
@@ -41,31 +38,35 @@ public class MapGenerator : MonoBehaviour {
 	private float lastY;
 	private GameObject lastElement;
 	
-	private float currentDifficulty;
+	public float currentDifficulty;
 	private float difficulty;	
 
 	// Use this for initialization
 	void Start () {
-		// TODO get this from the menu or somewhere
-		difficulty = HARD_DIFFICULTY;
+		instance = this;
+		int difficultyFromMenu = PlayerPrefs.GetInt(PlayerPrefsStrings.DIFFICULTY_FIELD);
+		switch(difficultyFromMenu) {
+			case 0: difficulty = EASY_DIFFICULTY; break;
+			case 1: difficulty = NORMAL_DIFFICULTY; break;
+			case 2: difficulty = HARD_DIFFICULTY; break;
+			default: difficulty = EASY_DIFFICULTY; break;
+		}
+
 		adjustDifficulty (0);
 
 		lastElement = GameObject.FindWithTag (Tags.GROUND_TAG);
 		xNextElement = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.x;
 		lastY = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.y;
 
+		// necessary for calculating the current difficulty in each update
 		xNextElementInitial = xNextElement;
 
-		lastElement = new BlockAndGroundGenerator(
-			new NormalDistribution(0,1),
-			new NormalDistribution(3, 0.5),
-			new NormalDistribution(3, 0.3),
-			new NormalDistribution(0, 1),
-			new NormalDistribution(5, 0.2)
-		).GenerateSection(0, xNextElement, lastY, lastElement);
-
-		xNextElement = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.x;
-		lastY = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.y;
+		// start off with a tutorial-ish section for beginners of the game
+		if(difficulty < NORMAL_DIFFICULTY) {
+			lastElement = new TutorialSectionGenerator ().GenerateSection (currentDifficulty, xNextElement, lastY, lastElement);
+			xNextElement = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.x;
+			lastY = lastElement.GetComponentInChildren<Collider2D> ().bounds.max.y;
+		}
 	}
 
 	// Update is called once per frame
@@ -76,11 +77,12 @@ public class MapGenerator : MonoBehaviour {
 			xNextElement = lastElement.GetComponentInChildren<Collider2D>().bounds.max.x;
 			lastY = lastElement.GetComponentInChildren<Collider2D>().bounds.max.y;
 			adjustDifficulty (xNextElement - xNextElementInitial);
+			Debug.Log (currentDifficulty);
 		}
 	}
 
-	// see http://www.wolframalpha.com/input/?i=plot+1%2F%281%2Bexp%28-0.005+*+%28x+-500%29%29%29+for+x+%3D+0+to+1000
+	// see http://www.wolframalpha.com/input/?i=plot+1%2F%281%2Bexp%28-0.01+*+%28x+-150%29%29%29+for+x+%3D+0+to+1000
 	private void adjustDifficulty(float distanceTraveled) {
-		currentDifficulty = 1.0f / (1 + Mathf.Exp (-0.005f * (distanceTraveled + difficulty)));
+		currentDifficulty = 1.0f / (1 + Mathf.Exp (-0.01f * (distanceTraveled + difficulty)));
 	}
 }
