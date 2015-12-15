@@ -43,8 +43,7 @@ public class MainMenuController : MonoBehaviour {
 	void Update() {
 
 		if(Input.GetKeyDown(KeyCode.Return) && titleState == state.showDifficulty) {
-			PlayerPrefs.SetInt(PlayerPrefsStrings.DIFFICULTY_FIELD, difficulty);
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+			startGame();
 		}
 			
 		if(Input.GetKeyDown(UP_BUTTON_NAME) || Input.GetKeyDown(DOWN_BUTTON_NAME)) {
@@ -60,12 +59,11 @@ public class MainMenuController : MonoBehaviour {
 			case state.showDifficulty:
 				if(Input.GetKeyDown(UP_BUTTON_NAME)) {
 					difficulty -= 1;
-					if(difficulty < 0) difficulty = 0;
+					if(difficulty < 0) difficulty = 2;
 				}
 
 				if(Input.GetKeyDown(DOWN_BUTTON_NAME)) {
-					difficulty += 1;
-					if(difficulty >2) difficulty = 2;
+					startGame();
 				}
 
 				easyTextfield.color = Color.white;
@@ -91,5 +89,10 @@ public class MainMenuController : MonoBehaviour {
 	void showDifficulty() {
 		difficultyCanvas.SetActive(true);
 		manualTexture.SetActive(false);
+	}
+
+	void startGame() {
+		PlayerPrefs.SetInt(PlayerPrefsStrings.DIFFICULTY_FIELD, difficulty);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 }

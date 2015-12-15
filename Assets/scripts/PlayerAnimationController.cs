@@ -12,10 +12,17 @@ public class PlayerAnimationController : MonoBehaviour {
 
 	private Animator animator;
 
+	public AudioClip death;
+	public AudioClip jump;
+	public AudioSource audioSource;
+
+	private bool deathSoundPlayed;
+
 	// Use this for initialization
 	void Start () {
 		animator = gameObject.GetComponent<Animator>();
 		changeState (STATE_RUN);
+		deathSoundPlayed = false;
 	}
 
 	private void changeState(int state){
@@ -31,13 +38,22 @@ public class PlayerAnimationController : MonoBehaviour {
 
 	public void onSpawn() {
 		changeState (STATE_RUN);
+		deathSoundPlayed = false;
 	}
 
 	public void onDie() {
 		changeState (STATE_DIE);
 	}
 
-	void onDead() {
+	void onDead() {	
+		if(!deathSoundPlayed) {
+			audioSource.PlayOneShot(death);
+			deathSoundPlayed = true;
+		}
 		Utils.SendGlobalMessage(Utils.ON_PLAYER_DEATH);
+	}
+
+	public void onLand() {
+		audioSource.PlayOneShot(jump);
 	}
 }
