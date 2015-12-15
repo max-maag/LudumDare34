@@ -17,13 +17,7 @@ public class MapGenerator : MonoBehaviour {
 			new NormalDistribution(5, 1),
 			new NormalDistribution(5, 1)
 		),
-		new BlockAndGroundGenerator(
-			new NormalDistribution(0,1),
-			new NormalDistribution(4, 0.7),
-			new NormalDistribution(3, 0.5),
-			new NormalDistribution(0, 0.15),
-			new NormalDistribution(5, 1)
-		),
+		new BlockAndGroundGenerator(),
 		new CannonSectionGenerator(new NormalDistribution(0,2),
 			new NormalDistribution(5,1),
 			new NormalDistribution(4,0.5)),
@@ -77,7 +71,6 @@ public class MapGenerator : MonoBehaviour {
 			xNextElement = lastElement.GetComponentInChildren<Collider2D>().bounds.max.x;
 			lastY = lastElement.GetComponentInChildren<Collider2D>().bounds.max.y;
 			adjustDifficulty (xNextElement - xNextElementInitial);
-			Debug.Log (currentDifficulty);
 		}
 	}
 
