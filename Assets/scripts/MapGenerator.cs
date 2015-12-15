@@ -12,11 +12,9 @@ public class MapGenerator : MonoBehaviour {
 
 	private readonly IMapSectionGenerator[] sectionGenerators = {
 		new JumpSectionGenerator(
-			new NormalDistribution(0,1),
+			new NormalDistribution(-0.5,0.5),
 			new NormalDistribution(2,0.5),
 			new NormalDistribution(5, 1),
-			new NormalDistribution(3, 0.8),
-			new NormalDistribution(0, 0.15),
 			new NormalDistribution(5, 1)
 		),
 		new BlockAndGroundGenerator(
@@ -53,7 +51,7 @@ public class MapGenerator : MonoBehaviour {
 			case 2: difficulty = HARD_DIFFICULTY; break;
 			default: difficulty = EASY_DIFFICULTY; break;
 		}
-			
+
 		adjustDifficulty (0);
 
 		lastElement = GameObject.FindWithTag (Tags.GROUND_TAG);
