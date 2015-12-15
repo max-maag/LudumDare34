@@ -10,8 +10,8 @@ public class BlockAndGroundGenerator : IMapSectionGenerator {
 	private const float Y_OFFSET_OF_GROUND_DEVIATION_FACTOR_UPWARDS = 0.7f;
 	private const float Y_OFFSET_OF_GROUND_DEVIATION_FACTOR_DOWNWARDS = -1f;
 
-	private const float MINIMUM_BLOCK_WIDTH = 3.5f;
-	private const float MAXIMUM_BLOCK_WIDTH = 5.5f;
+	private const float MINIMUM_BLOCK_WIDTH = 4.5f;
+	private const float MAXIMUM_BLOCK_WIDTH = 6f;
 
 	private const float MINIMUM_BLOCK_HEIGHT = 3f;
 
