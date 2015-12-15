@@ -78,6 +78,9 @@ public class PlayerMovementScript : MonoBehaviour {
 		if(isTouchingFloor && collisionWithGroundOrBlock) {
 			isTouchingFloor = false;
 			animationController.onTouchingFloorChanged (isTouchingFloor);
+			if(c.gameObject.CompareTag(Tags.BLOCK_TAG)) {
+				animationController.onLand();
+			}
 		}
 	}
 
