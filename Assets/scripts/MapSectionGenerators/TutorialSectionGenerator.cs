@@ -88,6 +88,18 @@ public class TutorialSectionGenerator : IMapSectionGenerator {
 			xNextGenerate += width;
 		}
 
+		// section with a cannon
+		{
+			float width = 7;
+			GroundFactory.GetGround (xNextGenerate, y, width, tileset);
+			xNextGenerate += width;
+		}
+		{
+			float width = 4;
+			BlockFactory.instance.getMultBlockObstacleWithCanon(xNextGenerate, y+4, width, new float[] {1.5f, 2f}, new float[] {2.5f}, new bool[] {true, false});
+			xNextGenerate += width;
+		}
+
 		// final ground before the "real" level starts
 		return GroundFactory.GetGround (xNextGenerate, y, 10, tileset);
 	}
