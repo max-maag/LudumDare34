@@ -6,7 +6,7 @@ public class BlockAndGroundGenerator : IMapSectionGenerator {
 	private const float MINIMUM_HEIGHT_OF_ELEMENT_VISIBLE = 1f;
 	private const float CENTERING_FACTOR = 0.8f;
 
-	private const float Y_OFFSET_OF_BLOCK_DEVIATION = 4;
+	private const float Y_OFFSET_OF_BLOCK_DEVIATION = 2;
 	private const float Y_OFFSET_OF_GROUND_DEVIATION_FACTOR_UPWARDS = 0.7f;
 	private const float Y_OFFSET_OF_GROUND_DEVIATION_FACTOR_DOWNWARDS = -1f;
 
