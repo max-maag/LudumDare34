@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class NormalDistribution {
 	private static readonly System.Random seedGenerator = new System.Random();
+
+	public static readonly NormalDistribution STD = new NormalDistribution(0,1);
+
 	public double mean;
 	public double dev;
 

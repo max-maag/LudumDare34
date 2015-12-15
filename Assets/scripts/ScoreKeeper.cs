@@ -6,15 +6,20 @@ public class ScoreKeeper : MonoBehaviour {
 	public float score;
 
 	private bool stop;
+	private float playerXOld;
+	private GameObject player;
 
 	// Use this for initialization
 	void Start () {
 		score = 0;
+		player = GameObject.FindGameObjectWithTag(Tags.PLAYER_TAG);
+		playerXOld = player.transform.position.x;
 	}
 
 	void Update () {
 		if (!stop) {
-			score += 50 * Time.deltaTime;
+			score += (player.transform.position.x - playerXOld)*MapGenerator.instance.currentDifficulty;
+			playerXOld = player.transform.position.x;
 		}
 	}
 
