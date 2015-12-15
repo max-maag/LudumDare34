@@ -77,7 +77,6 @@ public class MapGenerator : MonoBehaviour {
 			xNextElement = lastElement.GetComponentInChildren<Collider2D>().bounds.max.x;
 			lastY = lastElement.GetComponentInChildren<Collider2D>().bounds.max.y;
 			adjustDifficulty (xNextElement - xNextElementInitial);
-			Debug.Log (currentDifficulty);
 		}
 	}
 

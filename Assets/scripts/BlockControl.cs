@@ -74,9 +74,6 @@ public class BlockControl : MonoBehaviour {
 		}
 
 		Array.Sort(blocks, (a,b) => (int) Math.Sign(a.transform.position.x - b.transform.position.x));
-
-		for(int i=0; i<blocks.Length; i++)
-			Debug.Log(blocks[i]);
 		
 		for(int i=0; i<blocks.Length; i++) {
 			currentBlock = blocks[i].GetComponent<Rigidbody2D>();

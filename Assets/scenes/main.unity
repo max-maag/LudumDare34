@@ -85,7 +85,11 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &101334273
+--- !u!1 &134791452 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 109480, guid: 69e7ce88fd5d36846822700d92a71a6f, type: 2}
+  m_PrefabInternal: {fileID: 2146993776}
+--- !u!21 &269231082
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -93,7 +97,9 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: GrassCenter (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 0
@@ -223,11 +229,7 @@ Material:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &134791452 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 109480, guid: 69e7ce88fd5d36846822700d92a71a6f, type: 2}
-  m_PrefabInternal: {fileID: 2146993776}
---- !u!21 &483669039
+--- !u!21 &434181187
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -238,7 +240,9 @@ Material:
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
     (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
-    (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance) (Instance)
+    (Instance) (Instance) (Instance) (Instance)
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 0
@@ -414,7 +418,7 @@ Prefab:
     - target: {fileID: 21244408, guid: 3ae55c7009e93524fb53aa42c87f2c2a, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 483669039}
+      objectReference: {fileID: 434181187}
     - target: {fileID: 433918, guid: 3ae55c7009e93524fb53aa42c87f2c2a, type: 2}
       propertyPath: m_LocalScale.y
       value: 1
@@ -440,6 +444,7 @@ GameObject:
   - 114: {fileID: 542274511}
   - 114: {fileID: 542274512}
   - 114: {fileID: 542274513}
+  - 114: {fileID: 542274514}
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
@@ -485,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946d77d4b04792347a44a39b065aa1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDifficulty: 0
 --- !u!114 &542274510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +541,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+--- !u!114 &542274514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542274506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb43b29e2d7b0045bb93b3456d9ef4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloud: {fileID: 113718, guid: 4000655447c0f7941a5b4a0f7c549e82, type: 2}
+  clouds:
+  - {fileID: 21300000, guid: 368f35bb06e7be748a9c17e05e6bde05, type: 3}
+  - {fileID: 21300000, guid: 587dff1d2a7557c4797ac902bc933adb, type: 3}
+  - {fileID: 21300000, guid: 4fec87366ae82a645a0907f7e63e744e, type: 3}
+  - {fileID: 21300000, guid: e85d5445aa830e44cb5a677c200eaea9, type: 3}
+  - {fileID: 21300000, guid: 8e834d29149f4704d85bb08c38bbd863, type: 3}
+  - {fileID: 21300000, guid: ed1c783e519521d44b350f64ecf99aba, type: 3}
+  - {fileID: 21300000, guid: a5430c3cbdba31640baaccd98b89e111, type: 3}
+  - {fileID: 21300000, guid: ca4e2b9ad17f73a439011ce8c93ec36e, type: 3}
+  - {fileID: 21300000, guid: 8f4dd3231da9f004cbf18202f97a6025, type: 3}
 --- !u!1001 &1035911140
 Prefab:
   m_ObjectHideFlags: 0
@@ -577,7 +605,7 @@ Prefab:
     - target: {fileID: 21208808, guid: 1d824c97afeed7a4bb5682f72231138f, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 101334273}
+      objectReference: {fileID: 269231082}
     - target: {fileID: 446258, guid: 1d824c97afeed7a4bb5682f72231138f, type: 2}
       propertyPath: m_LocalScale.x
       value: 15
@@ -656,7 +684,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_BackGroundColor: {r: 0.10986158, g: 0.52468395, b: 0.9338235, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

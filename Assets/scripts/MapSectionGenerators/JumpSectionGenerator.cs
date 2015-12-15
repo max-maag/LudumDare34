@@ -43,8 +43,6 @@ public class JumpSectionGenerator : IMapSectionGenerator {
 		float maxBlockOffset = BLOCK_MAX_SPEED * 2 * blockWidth/PLAYER_MAX_SPEED;
 		float minY = Camera.main.ViewportToWorldPoint(Vector3.zero).y;
 
-		Debug.Log(getMaxGapWidth(blockY + /*difficulty */ maxBlockOffset, minY));
-
 		float gapWidth = Mathf.Max(
 			Random.Range(difficulty, 1f) * getMaxGapWidth(blockY + maxBlockOffset, minY),
 			MIN_GAP

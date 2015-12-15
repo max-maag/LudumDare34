@@ -20,8 +20,6 @@ public class CameraFollowScript : MonoBehaviour {
 		float onePixelInWorldPoint = Mathf.Abs(p.x-p2.x);
 
 		// sets the xOffset to the left screen end - the size of the player so, that he will be on the left of the camera
-		Debug.Log(player);
-		Debug.Log(player.GetComponent<SpriteRenderer>().sprite);
 		xOffset = (Screen.width/2)*onePixelInWorldPoint - player.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
 		transform.position = new Vector3(
 			transform.position.x,
